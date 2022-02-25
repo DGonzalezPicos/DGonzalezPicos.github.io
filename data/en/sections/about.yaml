@@ -1,0 +1,41 @@
+# section information
+section:
+  name: About
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: Master's Astronomy Student
+# your company information
+company:
+  name: Leiden University.
+  url: "https://www.universiteitleiden.nl/en/education/study-programmes/master/astronomy"
+
+# your resume. this file path should be relative to you "static" directory
+#resume: "files/resume.pdf"
+
+# a summary about you
+summary: "I am a second-year student in the Master of Astronomy Research at Leiden University. My research interests
+mainly concern exoplanets: characterisation and detection techniques. I have experience in observational astronomy, 
+reduction and analysis of ground-based photometry and high-resolution spectroscopy."
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Github
+  icon: "fab fa-github"
+  url: "https://github.com/DGonzalezPicos"
+
+# your soft skills
+# give the percentage between 50 to 100 with 5 intervals.
+# currently supported colors: blue, yellow, pink, green, sky, orange
+softSkills:
+- name: MSc. Astronomy
+  percentage: 75
+  color: orange
+- name: BSc. Physics
+  percentage: 100
+  color: yellow

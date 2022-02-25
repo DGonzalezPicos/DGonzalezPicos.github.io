@@ -1,0 +1,31 @@
+# section information
+section:
+  name: Skills
+  id: skills
+  enable: true
+  weight: 2
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# Your Skills.
+# Give a summary of you each skill in the summary section.
+skills:
+- name: Support Astronomer and Telescope Operator
+#  logo: "/images/sections/skills/ing_large_logo.jpg"
+  summary: "Capable of planning, conducting and analysing observations from mid-sized 
+  ground-based telescopes. Experienced as a Student Support Astronomer at the Isaac Newton Group of Telescopes."
+#  url: "https://www.ing.iac.es/"
+
+- name: Data Reduction 
+#  logo: "/images/sections/skills/go.png"
+  summary: "Experienced in reducing raw data to generate high-quality images, time-series photometry or 
+  spectra."
+#  url: "https://golang.org/"
+
+- name: Python in Astronomy
+#  logo: "/images/sections/skills/cloud.png"
+  summary: "Advanced `python` user with experience in managing big datasets, modelling of physical processes and
+  data visualisation. My recent projects involve atmospheric modelling with radiative transfer code, 
+  classification of long-baseline lightcurves, reduction of
+  high-resolution spectroscopy and more."

@@ -1,0 +1,44 @@
+# section information
+section:
+  name: Experiences
+  id: experiences
+  enable: true
+  weight: 3
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# Your experiences
+experiences:
+- company:
+    name: Leiden University
+    url: "https://local.strw.leidenuniv.nl/"
+    location: Leiden, Netherlands
+    # company overview
+    overview: Student teaching asssistant for the third-year bachelor's astronomy course of _Radiative Processes in Astrophysics_.
+  positions:
+  - designation: BSc. Astronomy Teaching Assistant
+    start: February 2021
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Supervision of tutorial session.
+    - Support tasks for lectures -- recording setup, reviewing and grading assignments.
+
+
+- company:
+    name: Isaac Newton Group of Telescopes (ING)
+    url: "https://www.ing.iac.es/"
+    location: La Palma, Spain
+    overview: ING Support and Research Studentship Programme
+  positions:
+  - designation: Student Support Astronomer
+    start: September 2020
+    end: September 2021
+    responsibilities:
+    - Set up the instrument and telescope for the observing run.
+    - Operate the dome and the telescope system.
+    - Support visitor astronomers with their programmes.
+    - Perform observations in service mode.
+
