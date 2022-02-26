@@ -1,4 +1,4 @@
-baseURL: https://DGonzalezPicos.github.io/
+baseURL: https://dgonzalezpicos.github.io/
 
 languageCode: en-us
 title: "Darío's Website"
@@ -24,7 +24,7 @@ enableEmoji: true
 # Site parameters
 params:
   # GitHub repo URL of your site
-  gitRepo: https://github.com/DGonzalezPicos
+  gitRepo: https://github.com/dgonzalezpicos
 
   # specify whether you want to write some blog posts or not
   enableBlogPost: false
