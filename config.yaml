@@ -36,6 +36,7 @@ params:
   # Currently, you can just hide it from the footer.
   newsletter:
     enable: false
+  relativeurls: true
 
  # background: "images/IMG_1121-Pano.jpg"
   background: "images/mwc_wide.jpg"
