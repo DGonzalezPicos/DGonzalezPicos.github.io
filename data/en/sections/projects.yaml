@@ -13,36 +13,33 @@ buttons:
 - name: All
   filter: "all"
 - name: Professional
-  filter: "professional"
-- name: Academic
-  filter: "academic"
-- name: Hobby
-  filter: "hobby"
+  filter: "Exoplanets"
 
 # your projects
 projects:
-- name: Kubernetes
+- name: High-Resolution Cross-Correlation Emission Spectroscopy of WASP-189 b
  # logo: /images/sections/projects/kubernetes.png
-  role: Contributor
-  timeline: "March 2018 - Present"
-  repo: https://github.com/kubernetes/kubernetes # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  role: Author
+  timeline: "February 2022 - Present"
+  repo: https://github.com/DGonzalezPicos # If your project is a public repo on GitHub, then provide this link. it will show star count.
   #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
-  summary: Production-Grade Container Scheduling and Management.
-  tags: ["professional", "kubernetes", "cloud"]
+  summary: Developing reduction techniques for high-resolution spectroscopy to detect species in the atmospheres of ultra-hot-jupiters via the cross-correlation technique.
 
-- name: Tensorflow
+  tags: ["exoplanets", "atmospheres", "ultra-hot-jupiters"]
+
+- name: Looking for CPDs in ASAS-SN
  #  logo: /images/sections/projects/tensorflow.png
-  role: Developer
-  timeline: "Jun 2018 - Present"
-  repo: https://github.com/tensorflow/tensorflow
+  role: Author
+  timeline: "February 2021 - December 2021"
+  repo: https://github.com/DGonzalezPicos/MRP-ASAS-Rings
   #url: ""
-  summary: An Open Source Machine Learning Framework for Everyone.
-  tags: ["professional", "machine-learning","academic"]
+  summary: Investigating the long-baseline ASAS-SN light curves of young stars to detect circumsecondary disks in transit.
+  tags: ["circumplanetary-disks", "lightcurves","long-eclipses"]
 
-- name: Toha
+- name: Characterising Exoplanetary Atmospheres with ARIEL
  #  logo: /images/sections/projects/toha.png
-  role: Owner
-  timeline: "Jun 2019 - Present"
-  repo: https://github.com/hossainemruz/toha
-  summary: A Hugo theme for personal portfolio.
-  tags: ["hobby","hugo","theme","professional"]
+  role: Author
+  timeline: "January 2020 - June 2020"
+  repo: https://github.com/DGonzalezPicos/UndergraduateProject
+  summary: Simulating ARIEL transmission spectroscopy observations and performing retrievals of hot-jupiter’s atmospheres with radiative transfer models.
+  tags: ["undergraduate-project","exoplanets","atmospheres","ariel"]

@@ -17,14 +17,15 @@ experiences:
     # company overview
     overview: Student teaching asssistant for the third-year bachelor's astronomy course of _Radiative Processes in Astrophysics_.
   positions:
-  - designation: BSc. Astronomy Teaching Assistant
+  - designation: Teaching Assistant for BSc. Astronomy
     start: February 2021
     # don't provide end date if you are currently working there. It will be replaced by "Present"
     # end: Dec 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
     - Supervision of tutorial session.
-    - Support tasks for lectures -- recording setup, reviewing and grading assignments.
+    - Grading of problem sets.
+    - Support tasks for lectures -- recording setup and reviewing.
 
 
 - company:
