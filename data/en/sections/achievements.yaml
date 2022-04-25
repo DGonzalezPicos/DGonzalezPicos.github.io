@@ -1,0 +1,19 @@
+section:
+  name: Astrophotography
+  id: achievements
+  enable: true
+  weight: 8
+  showOnNavbar: true
+
+achievements:
+- title: The Milky Way Core on a Dusty Night
+  image: /images/sections/achievements/MWC-DustyRoque-Pano_1080p.jpg
+  summary: Panorama shot of the Milky Way Core above the volcanic landscape of the island. Shot from the top of Roque de Los Muchachos.
+
+- title: The Milky Way Core between Telescopes
+  image: /images/sections/achievements/int_jkt_mwc-pano-insta.jpg
+  summary: The last days of the summer Milky Way Core shot between the 1-m JKT and the 2.5-m INT telescope on ORM.
+
+- title: The INT opening at twilight
+  image: /images/sections/achievements/int_mercator_sunset-Pano.jpg
+  summary: The Isaac Newton Telescope getting ready for a night of observations next to the 1.2-m Mercator telescope.

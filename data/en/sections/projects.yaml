@@ -12,8 +12,8 @@ section:
 buttons:
 - name: All
   filter: "all"
-- name: Professional
-  filter: "Exoplanets"
+- name: Exoplanets
+  filter: "exoplanets"
 
 # your projects
 projects:

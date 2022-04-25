@@ -25,6 +25,10 @@ reduction and analysis of ground-based photometry and high-resolution spectrosco
 # your social links
 # give as many as you want. use font-awesome for the icons.
 socialLinks:
+- name: Email
+  icon: "fas fa-envelope"
+  url: "dariogonzalezpicos@gmail.com"
+
 - name: Github
   icon: "fab fa-github"
   url: "https://github.com/DGonzalezPicos"
