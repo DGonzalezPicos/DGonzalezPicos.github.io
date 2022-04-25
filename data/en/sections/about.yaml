@@ -20,7 +20,7 @@ company:
 # a summary about you
 summary: "I am a second-year student in the Master of Astronomy Research at Leiden University. My research interests
 mainly concern exoplanets: characterisation and detection techniques. I have experience in observational astronomy, 
-reduction and analysis of ground-based photometry and high-resolution spectroscopy."
+reduction and analysis of ground-based photometry and high-resolution spectroscopy. I look forward to pursuing a PhD in Astronomy."
 
 # your social links
 # give as many as you want. use font-awesome for the icons.
@@ -34,7 +34,7 @@ socialLinks:
 # currently supported colors: blue, yellow, pink, green, sky, orange
 softSkills:
 - name: MSc. Astronomy
-  percentage: 75
+  percentage: 90
   color: orange
 - name: BSc. Physics
   percentage: 100
