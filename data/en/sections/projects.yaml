@@ -17,6 +17,17 @@ buttons:
 
 # your projects
 projects:
+
+- name: The eclipse of the V773 Tau B circumbinary disk
+  role: Second-author
+  timeline: "2022"
+ # repo: https://github.com/mkenworthy/V773_Tau_disk
+  repo: files/V773_Tau_B_Disk_Paper_feb2022.pdf
+  summary: Discovery of an eclipsing circumbinary disk in the multiple system V773 Tau. Paper submitted in February 2022 to Astronomy & Astrophysics.
+
+  tags: ["disk", "eclipse", "young-stars"]
+
+
 - name: High-Resolution Cross-Correlation Emission Spectroscopy of WASP-189 b
  # logo: /images/sections/projects/kubernetes.png
   role: Author
