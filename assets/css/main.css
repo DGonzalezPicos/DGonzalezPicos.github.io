@@ -3893,7 +3893,7 @@ input, select, textarea {
 		background-size: 100% 100%;
 	} */
     #intro {
-        background-image: url('images/pano_vlts_cropped.png'); /* Replace with your actual image path */
+        background-image: url('images/pano_vlts_cropped_lowres.png'); /* Replace with your actual image path */
         background-size: cover;
         background-position: center;
         position: relative;
