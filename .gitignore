@@ -1,1 +1,53 @@
+# Images
 *.png
+*.jpg
+*.jpeg
+
+# Configuration files with sensitive information
+server_config.json
+
+# Data files with user submissions and personal information
+data/
+pending_submissions.csv
+approved_measurements.csv
+
+# Server logs and process files
+server.log
+server.pid
+*.log
+
+# Email setup credentials
+EMAIL_SETUP.md
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.tmp

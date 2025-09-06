@@ -621,7 +621,7 @@
 						
 						<div style="text-align: center; margin: 2rem 0;">
 							<a href="isotope_ratios_viewer.html" class="csv-button" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: transform 0.2s ease; margin-right: 1rem;">📊 View Raw CSV Data</a>
-							<button id="submitMeasurementBtn" class="csv-button" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: transform 0.2s ease; border: none; cursor: pointer;">➕ Submit a Measurement</button>
+							<button id="submitMeasurementBtn" class="csv-button" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: transform 0.2s ease; border: none; cursor: pointer;">➕ Submit New Measurement</button>
 						</div>
 						
 						<div style="margin-top: 2rem; padding: 1rem; background-color: #31383e; border-radius: 8px;">
@@ -656,6 +656,119 @@
 			</footer>
 
 
+		<!-- Submit Measurement Modal -->
+		<div id="submitModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow-y: auto;">
+			<div class="modal-content" style="background-color: #2c3e50; margin: 2% auto; padding: 2rem; border-radius: 10px; width: 95%; max-width: 700px; color: white; position: relative; max-height: 90vh; overflow-y: auto;">
+				<span class="close" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; position: absolute; top: 15px; right: 20px; z-index: 1001;">&times;</span>
+				
+				<h2 style="margin-top: 0; color: #3498db;">Submit a New Measurement</h2>
+				<p style="color: #bdc3c7; margin-bottom: 2rem;">Help expand our database by submitting isotopic ratio measurements. All fields except Target Name, Carbon Isotope Ratio, and Reference are optional.</p>
+				
+				<form id="measurementForm" style="display: flex; flex-direction: column; gap: 1rem;">
+					<div class="form-group">
+						<label for="targetName" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Target Name *</label>
+						<input type="text" id="targetName" name="targetName" required style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+					</div>
+					
+					<div class="form-group">
+						<label for="category" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Category</label>
+						<select id="category" name="category" onchange="toggleCustomInput('category')" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							<option value="">Select category...</option>
+							<option value="Super-Jupiter">Super-Jupiter</option>
+							<option value="Young Brown Dwarf">Young Brown Dwarf</option>
+							<option value="Brown Dwarf">Brown Dwarf</option>
+							<option value="Star">Star</option>
+							<option value="custom">Other (specify below)</option>
+						</select>
+						<input type="text" id="categoryCustom" name="categoryCustom" placeholder="Enter custom category..." style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px; margin-top: 0.5rem; display: none;">
+					</div>
+					
+					<div class="form-group">
+						<label for="carbonValue" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">¹²C/¹³C Ratio Value *</label>
+						<input type="number" id="carbonValue" name="carbonValue" required placeholder="e.g., 88" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;" onchange="toggleUncertaintyFields('carbon')">
+					</div>
+					
+					<div id="carbonUncertaintyGroup" style="display: none;">
+						<div style="display: flex; gap: 10px; margin-bottom: 10px;">
+							<div style="flex: 1;">
+								<label for="carbonUncertaintyLower" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Lower Error</label>
+								<input type="number" id="carbonUncertaintyLower" name="carbonUncertaintyLower" placeholder="e.g., 13" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							</div>
+							<div style="flex: 1;">
+								<label for="carbonUncertaintyUpper" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Upper Error</label>
+								<input type="number" id="carbonUncertaintyUpper" name="carbonUncertaintyUpper" placeholder="e.g., 13" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							</div>
+						</div>
+						<div style="font-size: 0.9em; color: #bdc3c7; margin-bottom: 10px;">
+							Leave both fields empty for no uncertainty, or fill only the lower error for symmetric uncertainty.
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="oxygenValue" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">¹⁶O/¹⁸O Ratio Value</label>
+						<input type="number" id="oxygenValue" name="oxygenValue" placeholder="e.g., 683" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;" onchange="toggleUncertaintyFields('oxygen')">
+					</div>
+					
+					<div id="oxygenUncertaintyGroup" style="display: none;">
+						<div style="display: flex; gap: 10px; margin-bottom: 10px;">
+							<div style="flex: 1;">
+								<label for="oxygenUncertaintyLower" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Lower Error</label>
+								<input type="number" id="oxygenUncertaintyLower" name="oxygenUncertaintyLower" placeholder="e.g., 53" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							</div>
+							<div style="flex: 1;">
+								<label for="oxygenUncertaintyUpper" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Upper Error</label>
+								<input type="number" id="oxygenUncertaintyUpper" name="oxygenUncertaintyUpper" placeholder="e.g., 53" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							</div>
+						</div>
+						<div style="font-size: 0.9em; color: #bdc3c7; margin-bottom: 10px;">
+							Leave both fields empty for no uncertainty, or fill only the lower error for symmetric uncertainty.
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="instrument" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Instrument</label>
+						<select id="instrument" name="instrument" onchange="toggleCustomInput('instrument')" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							<option value="">Select instrument...</option>
+							<option value="VLT/CRIRES+">VLT/CRIRES+</option>
+							<option value="Keck/NIRSPEC">Keck/NIRSPEC</option>
+							<option value="Keck/KPIC">Keck/KPIC</option>
+							<option value="JWST/NIRSpec">JWST/NIRSpec</option>
+							<option value="custom">Other (specify below)</option>
+						</select>
+						<input type="text" id="instrumentCustom" name="instrumentCustom" placeholder="Enter custom instrument..." style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px; margin-top: 0.5rem; display: none;">
+					</div>
+					
+					<div class="form-group">
+						<label for="reference" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Reference *</label>
+						<input type="text" id="reference" name="reference" required placeholder="e.g., Author et al. 2024" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+					</div>
+					
+					<div class="form-group">
+						<label for="doi" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">DOI (optional)</label>
+						<input type="text" id="doi" name="doi" placeholder="e.g., 10.1051/0004-6361/202451936" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+						<div style="font-size: 0.85em; color: #bdc3c7; margin-top: 0.3rem;">
+							Enter just the DOI number (e.g., 10.1051/0004-6361/202451936) without the full URL
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="notes" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Notes</label>
+						<textarea id="notes" name="notes" rows="3" placeholder="Additional notes or comments..." style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px; resize: vertical;"></textarea>
+					</div>
+					
+					<div class="form-group">
+						<label for="submitterEmail" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Your Email (for follow-up)</label>
+						<input type="email" id="submitterEmail" name="submitterEmail" placeholder="your.email@example.com" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+					</div>
+					
+					<div style="display: flex; gap: 1rem; margin-top: 1rem;">
+						<button type="submit" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px;">📧 Submit Measurement</button>
+						<button type="button" id="cancelBtn" style="flex: 1; padding: 12px; background: #95a5a6; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px;">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -666,8 +779,12 @@
 			<script src="assets/js/main.js"></script>
 			
 			<script>
-			// Submission functionality
+			// Modal functionality
+			const modal = document.getElementById('submitModal');
 			const submitBtn = document.getElementById('submitMeasurementBtn');
+			const closeBtn = document.querySelector('.close');
+			const cancelBtn = document.getElementById('cancelBtn');
+			const form = document.getElementById('measurementForm');
 			
 			// Server status elements
 			const statusIndicator = document.getElementById('statusIndicator');
@@ -705,37 +822,236 @@
 			// Check server status on page load
 			checkServerStatus();
 
-			// Show email submission instructions
+			// Open modal
 			submitBtn.onclick = function() {
-				alert(`To submit a new isotope ratio measurement, please send an email to:
-
-📧 picos@strw.leidenuniv.nl
-
-Subject: "Isotope Ratios Database"
-
-Required fields:
-• Target Name (e.g., "GQ Lup B")
-• Carbon Isotope Ratio ¹²C/¹³C (e.g., "53+7/-6")
-• Reference (e.g., "González Picos et al. 2025")
-
-Optional fields:
-• Category (e.g., "Super-Jupiter")
-• Oxygen Isotope Ratio ¹⁶O/¹⁸O (e.g., "683 ± 53")
-• Instrument (e.g., "VLT/CRIRES+")
-• DOI (e.g., "10.1051/0004-6361/202451936")
-• Notes
-• Your email for follow-up
-
-Example email:
-Subject: Isotope Ratios Database
-Target: HD 106906 b
-Category: Super-Jupiter
-Carbon Ratio: 75 ± 8
-Oxygen Ratio: 510 ± 60
-Instrument: JWST/NIRSpec
-Reference: Smith et al. 2024
-DOI: 10.1000/example.doi`);
+				modal.style.display = 'block';
+				document.body.style.overflow = 'hidden'; // Prevent background scrolling
 			}
+
+			// Close modal functions
+			function closeModal() {
+				modal.style.display = 'none';
+				document.body.style.overflow = 'auto'; // Restore scrolling
+				form.reset(); // Clear form
+				
+				// Hide custom inputs
+				document.getElementById('categoryCustom').style.display = 'none';
+				document.getElementById('instrumentCustom').style.display = 'none';
+				
+				// Hide uncertainty groups
+				document.getElementById('carbonUncertaintyGroup').style.display = 'none';
+				document.getElementById('oxygenUncertaintyGroup').style.display = 'none';
+			}
+
+			closeBtn.onclick = closeModal;
+			cancelBtn.onclick = closeModal;
+
+			// Close modal when clicking outside
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					closeModal();
+				}
+			}
+
+			// Toggle custom input fields
+			function toggleCustomInput(fieldType) {
+				const select = document.getElementById(fieldType);
+				const customInput = document.getElementById(fieldType + 'Custom');
+				
+				if (select.value === 'custom') {
+					customInput.style.display = 'block';
+					customInput.required = true;
+				} else {
+					customInput.style.display = 'none';
+					customInput.required = false;
+					customInput.value = '';
+				}
+			}
+			
+			// Toggle uncertainty fields
+			function toggleUncertaintyFields(ratioType) {
+				const valueField = document.getElementById(ratioType + 'Value');
+				const uncertaintyGroup = document.getElementById(ratioType + 'UncertaintyGroup');
+				
+				if (valueField.value && valueField.value.trim() !== '') {
+					uncertaintyGroup.style.display = 'block';
+				} else {
+					uncertaintyGroup.style.display = 'none';
+					// Clear uncertainty fields when hiding
+					document.getElementById(ratioType + 'UncertaintyLower').value = '';
+					document.getElementById(ratioType + 'UncertaintyUpper').value = '';
+				}
+			}
+			
+			// Helper function to format ratio with uncertainties
+			function formatRatio(value, lowerError, upperError) {
+				if (!value || value.trim() === '') return '';
+				
+				const val = parseFloat(value);
+				if (isNaN(val)) return value;
+				
+				if (!lowerError && !upperError) {
+					return val.toString();
+				}
+				
+				const lower = lowerError ? parseFloat(lowerError) : null;
+				const upper = upperError ? parseFloat(upperError) : null;
+				
+				if (lower !== null && upper !== null) {
+					// Asymmetric uncertainty
+					return `${val}⁺${upper}₋${lower}`;
+				} else if (lower !== null) {
+					// Symmetric uncertainty
+					return `${val} ± ${lower}`;
+				} else if (upper !== null) {
+					// Only upper error (treat as symmetric)
+					return `${val} ± ${upper}`;
+				}
+				
+				return val.toString();
+			}
+			
+			// Form submission
+			form.addEventListener('submit', async function(e) {
+				e.preventDefault();
+				
+				// Get form data
+				const formData = new FormData(form);
+				let data = Object.fromEntries(formData.entries());
+				
+				// Handle custom inputs
+				if (data.category === 'custom') {
+					if (!data.categoryCustom) {
+						alert('Please enter a custom category.');
+						return;
+					}
+					data.category = data.categoryCustom;
+				}
+				
+				if (data.instrument === 'custom') {
+					if (!data.instrumentCustom) {
+						alert('Please enter a custom instrument.');
+						return;
+					}
+					data.instrument = data.instrumentCustom;
+				}
+				
+				// Format carbon ratio
+				data.carbonRatio = formatRatio(
+					data.carbonValue,
+					data.carbonUncertaintyLower,
+					data.carbonUncertaintyUpper
+				);
+				
+				// Format oxygen ratio
+				data.oxygenRatio = formatRatio(
+					data.oxygenValue,
+					data.oxygenUncertaintyLower,
+					data.oxygenUncertaintyUpper
+				);
+				
+				// Remove fields we don't need to send
+				delete data.categoryCustom;
+				delete data.instrumentCustom;
+				delete data.carbonValue;
+				delete data.carbonUncertaintyLower;
+				delete data.carbonUncertaintyUpper;
+				delete data.oxygenValue;
+				delete data.oxygenUncertaintyLower;
+				delete data.oxygenUncertaintyUpper;
+				
+				// Validate required fields
+				if (!data.targetName || !data.carbonRatio || !data.reference) {
+					alert('Please fill in all required fields (Target Name, Carbon Isotope Ratio Value, and Reference).');
+					return;
+				}
+				
+				// Show loading state
+				const submitBtn = form.querySelector('button[type="submit"]');
+				const originalText = submitBtn.textContent;
+				submitBtn.textContent = 'Submitting...';
+				submitBtn.disabled = true;
+				
+				try {
+					// Try to submit to backend first
+					const response = await fetch('http://localhost:5000/api/submit', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data)
+					});
+					
+					// Check if response is ok
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					
+					// Get response text first to check if it's JSON
+					const responseText = await response.text();
+					let result;
+					
+					try {
+						result = JSON.parse(responseText);
+					} catch (parseError) {
+						console.error('Response is not valid JSON:', responseText);
+						throw new Error('Server returned invalid response. Falling back to email submission.');
+					}
+					
+					if (result.success) {
+						// Show success message
+						alert('Thank you for your submission! Your measurement has been submitted successfully and will be reviewed before being added to the database.');
+						
+						// Close modal
+						closeModal();
+						return;
+					} else {
+						// Show error message
+						alert('Error submitting measurement: ' + (result.error || 'Unknown error'));
+						return;
+					}
+				} catch (error) {
+					// Backend not available, fall back to email submission
+					console.warn('Backend not available, falling back to email submission:', error.message);
+					
+					// Create email content
+					const emailSubject = 'New Isotope Ratio Measurement Submission';
+					const emailBody = `
+New measurement submission for the isotope ratios database:
+
+Target Name: ${data.targetName}
+Category: ${data.category || 'Not specified'}
+Carbon Isotope Ratio (¹²C/¹³C): ${data.carbonRatio}
+Oxygen Isotope Ratio (¹⁶O/¹⁸O): ${data.oxygenRatio || 'Not provided'}
+Instrument: ${data.instrument || 'Not specified'}
+Reference: ${data.reference}
+DOI: ${data.doi || 'Not provided'}
+Notes: ${data.notes || 'None'}
+Submitter Email: ${data.submitterEmail || 'Not provided'}
+
+Submitted on: ${new Date().toLocaleString()}
+
+Note: This submission was sent via email because the backend server is not currently running.
+To enable direct database submission, please start the backend server using: python start_server.py
+					`.trim();
+					
+					// Create mailto link
+					const mailtoLink = `mailto:picos@strw.leidenuniv.nl?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+					
+					// Open email client
+					window.location.href = mailtoLink;
+					
+					// Show success message
+					alert('Backend server not available. Your email client should open with a pre-filled message. Please send the email to complete the submission process.\n\nTo enable direct database submission, start the backend server using: python start_server.py');
+					
+					// Close modal
+					closeModal();
+				} finally {
+					// Reset button state
+					submitBtn.textContent = originalText;
+					submitBtn.disabled = false;
+				}
+			});
 
 			</script>
 

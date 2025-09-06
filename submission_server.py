@@ -117,6 +117,56 @@ def load_config():
     return default_config
 
 
+def send_notification_email(submission_data, config):
+    """Send notification email to admin about new submission."""
+    if not config['email']['enabled']:
+        logger.info("Email notifications disabled")
+        return
+        
+    if not EMAIL_AVAILABLE:
+        logger.info("Email functionality not available - skipping email notification")
+        return
+    
+    try:
+        msg = MimeMultipart()
+        msg['From'] = config['email']['sender_email']
+        msg['To'] = config['email']['admin_email']
+        msg['Subject'] = f"New Isotope Ratio Measurement Submission: {submission_data['target_name']}"
+        
+        body = f"""
+New measurement submission received for the isotope ratios database:
+
+Submission ID: {submission_data['submission_id']}
+Target Name: {submission_data['target_name']}
+Category: {submission_data.get('category', 'Not specified')}
+Carbon Ratio (¹²C/¹³C): {submission_data['carbon_ratio']}
+Oxygen Ratio (¹⁶O/¹⁸O): {submission_data.get('oxygen_ratio', 'Not provided')}
+Instrument: {submission_data.get('instrument', 'Not specified')}
+Reference: {submission_data['reference']}
+DOI: {submission_data.get('doi', 'Not provided')}
+Notes: {submission_data.get('notes', 'None')}
+Submitter Email: {submission_data.get('submitter_email', 'Not provided')}
+
+Submitted on: {submission_data['timestamp']}
+
+Please review this submission in the admin interface:
+http://localhost:5000/admin.html
+        """.strip()
+        
+        msg.attach(MimeText(body, 'plain'))
+        
+        server = smtplib.SMTP(config['email']['smtp_server'], config['email']['smtp_port'])
+        server.starttls()
+        server.login(config['email']['sender_email'], config['email']['sender_password'])
+        text = msg.as_string()
+        server.sendmail(config['email']['sender_email'], config['email']['admin_email'], text)
+        server.quit()
+        
+        logger.info(f"Notification email sent for submission {submission_data['submission_id']} to {config['email']['admin_email']}")
+    except Exception as e:
+        logger.error(f"Failed to send notification email: {e}")
+
+
 # Flask routes
 @app.route('/')
 def serve_index():
@@ -196,6 +246,13 @@ def submit_measurement():
         with open(SUBMISSIONS_CSV, 'a', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=SUBMISSION_HEADERS)
             writer.writerow(submission_data)
+        
+        # Send email notification
+        config = load_config()
+        try:
+            send_notification_email(submission_data, config)
+        except Exception as e:
+            logger.warning(f"Could not send email notification: {e}")
         
         logger.info(f"New submission received: {submission_id} - {data['targetName']}")
         
