@@ -15,6 +15,9 @@ approved_measurements.csv
 server.log
 server.pid
 *.log
+data/server.log
+data/server.pid
+data/systemd.log
 
 # Email setup credentials
 EMAIL_SETUP.md

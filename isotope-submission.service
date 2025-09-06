@@ -1,0 +1,32 @@
+[Unit]
+Description=Isotope Ratios Submission Server
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+User=picos
+Group=picos
+WorkingDirectory=/home/picos/public_html
+Environment=PATH=/home/picos/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PYTHONPATH=/home/picos/public_html
+
+# Command to run (will try to activate prt3 environment)
+ExecStartPre=/bin/bash -c 'mkdir -p /home/picos/public_html/data'
+ExecStart=/bin/bash -c 'source /home/picos/.bashrc && if command -v prt3 >/dev/null 2>&1; then prt3; fi && exec python3 /home/picos/public_html/submission_server.py'
+
+# Logging
+StandardOutput=append:/home/picos/public_html/data/systemd.log
+StandardError=append:/home/picos/public_html/data/systemd.log
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/home/picos/public_html
+ProtectHome=read-only
+
+[Install]
+WantedBy=multi-user.target

@@ -220,62 +220,62 @@ if FLASK_AVAILABLE:
 
     @app.route('/api/submit', methods=['POST'])
     def submit_measurement():
-    """Handle new measurement submissions."""
-    try:
-        data = request.get_json()
-        
-        # Validate required fields
-        required_fields = ['targetName', 'carbonRatio', 'reference']
-        for field in required_fields:
-            if not data.get(field):
-                return jsonify({
-                    "success": False, 
-                    "error": f"Missing required field: {field}"
-                }), 400
-        
-        # Create submission record
-        submission_id = generate_submission_id()
-        timestamp = datetime.datetime.now().isoformat()
-        
-        submission_data = {
-            'submission_id': submission_id,
-            'timestamp': timestamp,
-            'status': 'pending',
-            'target_name': data['targetName'],
-            'category': data.get('category', ''),
-            'carbon_ratio': data['carbonRatio'],
-            'oxygen_ratio': data.get('oxygenRatio', ''),
-            'instrument': data.get('instrument', ''),
-            'reference': data['reference'],
-            'doi': data.get('doi', ''),
-            'notes': data.get('notes', ''),
-            'submitter_email': data.get('submitterEmail', '')
-        }
-        
-        # Save to CSV
-        with open(SUBMISSIONS_CSV, 'a', newline='', encoding='utf-8') as f:
-            writer = csv.DictWriter(f, fieldnames=SUBMISSION_HEADERS)
-            writer.writerow(submission_data)
-        
-        # Load config and send notification
-        config = load_config()
-        send_notification_email(submission_data, config)
-        
-        # Auto-approve if configured
-        if config.get('auto_approve', False):
-            approve_submission(submission_id)
-        
-        logger.info(f"New submission received: {submission_id} - {data['targetName']}")
-        
-        return jsonify({
-            "success": True, 
-            "submission_id": submission_id,
-            "message": "Submission received successfully"
-        })
-        
-    except Exception as e:
-        logger.error(f"Error processing submission: {e}")
-        return jsonify({"success": False, "error": str(e)}), 500
+        """Handle new measurement submissions."""
+        try:
+            data = request.get_json()
+            
+            # Validate required fields
+            required_fields = ['targetName', 'carbonRatio', 'reference']
+            for field in required_fields:
+                if not data.get(field):
+                    return jsonify({
+                        "success": False, 
+                        "error": f"Missing required field: {field}"
+                    }), 400
+            
+            # Create submission record
+            submission_id = generate_submission_id()
+            timestamp = datetime.datetime.now().isoformat()
+            
+            submission_data = {
+                'submission_id': submission_id,
+                'timestamp': timestamp,
+                'status': 'pending',
+                'target_name': data['targetName'],
+                'category': data.get('category', ''),
+                'carbon_ratio': data['carbonRatio'],
+                'oxygen_ratio': data.get('oxygenRatio', ''),
+                'instrument': data.get('instrument', ''),
+                'reference': data['reference'],
+                'doi': data.get('doi', ''),
+                'notes': data.get('notes', ''),
+                'submitter_email': data.get('submitterEmail', '')
+            }
+            
+            # Save to CSV
+            with open(SUBMISSIONS_CSV, 'a', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=SUBMISSION_HEADERS)
+                writer.writerow(submission_data)
+            
+            # Load config and send notification
+            config = load_config()
+            send_notification_email(submission_data, config)
+            
+            # Auto-approve if configured
+            if config.get('auto_approve', False):
+                approve_submission(submission_id)
+            
+            logger.info(f"New submission received: {submission_id} - {data['targetName']}")
+            
+            return jsonify({
+                "success": True, 
+                "submission_id": submission_id,
+                "message": "Submission received successfully"
+            })
+            
+        except Exception as e:
+            logger.error(f"Error processing submission: {e}")
+            return jsonify({"success": False, "error": str(e)}), 500
 
 
 @app.route('/api/approve/<submission_id>', methods=['POST'])
