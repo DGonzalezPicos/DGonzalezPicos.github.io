@@ -8,8 +8,8 @@ server_config.json
 
 # Data files with user submissions and personal information
 data/*
-pending_submissions.csv
-approved_measurements.csv
+data/pending_submissions.csv
+data/approved_measurements.csv
 *.csv
 
 # Server logs and process files
@@ -55,3 +55,4 @@ Thumbs.db
 *.bak
 *.backup
 *.tmp
+docs/*
