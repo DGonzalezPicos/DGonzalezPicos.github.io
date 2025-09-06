@@ -10,29 +10,60 @@ A web-based system for collecting and managing isotopic ratio measurements from 
 - **Database storage**: SQLite database for persistent storage
 - **Responsive design**: Works on desktop and mobile devices
 
-## Setup Instructions
+## Quick Start
 
-### 1. Install Dependencies
+### Option 1: One-Click Setup (Recommended)
 
-```bash
-pip install -r requirements.txt
+**Windows:**
+```cmd
+start.bat
 ```
 
-### 2. Start the Server
-
+**Mac/Linux:**
 ```bash
-python start_server.py
+./start.sh
 ```
 
-This will:
-- Install required packages
+**Manual:**
+```bash
+python setup.py
+```
+
+This will automatically:
+- Install all dependencies
 - Initialize the database
-- Start the Flask server on port 5000
+- Start the server
+- Open your browser
 
-### 3. Access the Application
+### Option 2: Manual Setup
 
-- **Main page**: http://localhost:5000
-- **Admin panel**: http://localhost:5000/admin
+1. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Start the Server:**
+   ```bash
+   python start_server.py
+   ```
+
+3. **Access the Application:**
+   - **Main page**: http://localhost:5000
+   - **Admin panel**: http://localhost:5000/admin
+
+## How It Works
+
+### With Backend Server (Recommended)
+- Form submissions go directly to the database
+- Real-time status indicator shows server availability
+- Admin panel for reviewing submissions
+- Automatic data formatting and validation
+
+### Without Backend Server (Fallback)
+- Form submissions open your email client
+- Pre-filled email with all form data
+- Manual review process via email
+- Still maintains all form functionality
 
 ## Form Fields
 

@@ -624,6 +624,11 @@
 							<button id="submitMeasurementBtn" class="csv-button" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: transform 0.2s ease; border: none; cursor: pointer;">➕ Submit a Measurement</button>
 						</div>
 						
+						<div id="serverStatus" style="text-align: center; margin: 1rem 0; padding: 10px; border-radius: 5px; font-size: 0.9em;">
+							<div id="statusIndicator" style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: #f39c12; margin-right: 8px;"></div>
+							<span id="statusText">Checking server status...</span>
+						</div>
+						
 						<div style="margin-top: 2rem; padding: 1rem; background-color: #31383e; border-radius: 8px;">
 							<p><strong>Notes:</strong></p>
 							<ul style="margin: 0.5rem 0;">
@@ -771,6 +776,42 @@
 			const closeBtn = document.querySelector('.close');
 			const cancelBtn = document.getElementById('cancelBtn');
 			const form = document.getElementById('measurementForm');
+			
+			// Server status elements
+			const statusIndicator = document.getElementById('statusIndicator');
+			const statusText = document.getElementById('statusText');
+			const serverStatus = document.getElementById('serverStatus');
+			
+			// Check server status
+			async function checkServerStatus() {
+				try {
+					const response = await fetch('/api/submissions', {
+						method: 'GET',
+						timeout: 3000
+					});
+					
+					if (response.ok) {
+						// Server is running
+						statusIndicator.style.backgroundColor = '#27ae60';
+						statusText.textContent = 'Database submission available';
+						serverStatus.style.backgroundColor = '#d4edda';
+						serverStatus.style.color = '#155724';
+						serverStatus.style.border = '1px solid #c3e6cb';
+					} else {
+						throw new Error('Server responded with error');
+					}
+				} catch (error) {
+					// Server is not running
+					statusIndicator.style.backgroundColor = '#e74c3c';
+					statusText.textContent = 'Database submission unavailable - will use email fallback';
+					serverStatus.style.backgroundColor = '#f8d7da';
+					serverStatus.style.color = '#721c24';
+					serverStatus.style.border = '1px solid #f5c6cb';
+				}
+			}
+			
+			// Check server status on page load
+			checkServerStatus();
 
 			// Open modal
 			submitBtn.onclick = function() {
@@ -923,7 +964,7 @@
 				submitBtn.disabled = true;
 				
 				try {
-					// Submit to backend
+					// Try to submit to backend first
 					const response = await fetch('/api/submit', {
 						method: 'POST',
 						headers: {
@@ -945,7 +986,7 @@
 						result = JSON.parse(responseText);
 					} catch (parseError) {
 						console.error('Response is not valid JSON:', responseText);
-						throw new Error('Server returned invalid response. Please check if the backend server is running.');
+						throw new Error('Server returned invalid response. Falling back to email submission.');
 					}
 					
 					if (result.success) {
@@ -954,14 +995,47 @@
 						
 						// Close modal
 						closeModal();
+						return;
 					} else {
 						// Show error message
 						alert('Error submitting measurement: ' + (result.error || 'Unknown error'));
+						return;
 					}
 				} catch (error) {
-					// Show error message
-					console.error('Submission error:', error);
-					alert('Error submitting measurement: ' + error.message + '\n\nPlease make sure the backend server is running on port 5000.');
+					// Backend not available, fall back to email submission
+					console.warn('Backend not available, falling back to email submission:', error.message);
+					
+					// Create email content
+					const emailSubject = 'New Isotope Ratio Measurement Submission';
+					const emailBody = `
+New measurement submission for the isotope ratios database:
+
+Target Name: ${data.targetName}
+Category: ${data.category || 'Not specified'}
+Carbon Isotope Ratio (¹²C/¹³C): ${data.carbonRatio}
+Oxygen Isotope Ratio (¹⁶O/¹⁸O): ${data.oxygenRatio || 'Not provided'}
+Instrument: ${data.instrument || 'Not specified'}
+Reference: ${data.reference}
+Notes: ${data.notes || 'None'}
+Submitter Email: ${data.submitterEmail || 'Not provided'}
+
+Submitted on: ${new Date().toLocaleString()}
+
+Note: This submission was sent via email because the backend server is not currently running.
+To enable direct database submission, please start the backend server using: python start_server.py
+					`.trim();
+					
+					// Create mailto link
+					const mailtoLink = `mailto:picos@strw.leidenuniv.nl?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+					
+					// Open email client
+					window.location.href = mailtoLink;
+					
+					// Show success message
+					alert('Backend server not available. Your email client should open with a pre-filled message. Please send the email to complete the submission process.\n\nTo enable direct database submission, start the backend server using: python start_server.py');
+					
+					// Close modal
+					closeModal();
 				} finally {
 					// Reset button state
 					submitBtn.textContent = originalText;
