@@ -1,0 +1,27 @@
+target, category, 12C/13C, 16O/18O, instrument, reference, doi, note
+YSES 1 b, super-Jupiter, 88 (13), none, VLT/CRIRES+, Zhang et al. 2024, 10.3847/1538-3881/ad7ea9, SupJup III
+YSES 1 A, star (K3), 66 (5), none, VLT/CRIRES+, Zhang et al. 2024, 10.3847/1538-3881/ad7ea9, SupJup III
+GQ Lup B, super-Jupiter, 53^{+7}_{-6}, none, VLT/CRIRES+, González Picos et al. 2025, 10.1051/0004-6361/202451936, SupJup IV
+GQ Lup A, K6 host-star, 51^{+10}_{-8}, none, VLT/CRIRES+, González Picos et al. 2025, 10.1051/0004-6361/202451936, SupJup IV
+AB Pic b, super-Jupiter, 102 (8), none, VLT/CRIRES+, Gandhi et al. 2025,https://doi.org/10.1093/mnras/staf004, SupJup V
+2MASS J03552337+1133437 (2M0355), young brown dwarf, 97 (+25 / -18), none, Keck/NIRSPEC, Zhang et al. 2021, 10.1051/0004-6361/202141502,
+2MASS J03552337+1133437 (2M0355), young brown dwarf, 95 (7), none, VLT/CRIRES+, Grasser et al. 2025, https://doi.org/10.1051/0004-6361/202554195, SupJup VIII
+2MASS J14252798–3650229 (2M1425), young brown dwarf, 110^{+11}_{-10}, none, VLT/CRIRES+, Grasser et al. 2025, https://doi.org/10.1051/0004-6361/202554195, SupJup VIII
+TWA 28, young brown dwarf, 81^{+28}_{-19}, H_2^{18}O detection (2.1σ), VLT/CRIRES+, González Picos et al. 2024, 10.1051/0004-6361/202450028, SupJup II
+TWA 28, young brown dwarf, 75 (2), 683 (53), JWST/NIRSpec, González Picos et al. in review, none, reanalysis of Manjavacas et al. 2024
+TWA 27A, young brown dwarf, 79^{+14}_{-11}, 645^{+80}_{-70}, JWST/NIRSpec, González Picos et al. in review, none, reanalysis of Manjavacas et al. 2024
+2MASS J08561384-1342242 (J0856), young brown dwarf, 79^{+20}_{-14}, H_2^{18}O detection (3.3σ), VLT/CRIRES+, González Picos et al. 2024, 10.1051/0004-6361/202450028, SupJup II
+2MASS J12003792-7845082 (J1200), young brown dwarf, 114^{+69}_{-33} (≈2σ), none reported, VLT/CRIRES+, González Picos et al. 2024, 10.1051/0004-6361/202450028, SupJup II
+2MASS J08354256-0819237 (J0835), young brown dwarf, 89 (11), H_2^{18}O weak detection, VLT/CRIRES+, Mulder et al. 2025, 10.1051/0004-6361/202452859, SupJup VI
+2MASS J05012406-0010452 (J0501), young brown dwarf, 117^{+20}_{-17}, none reported, VLT/CRIRES+, Mulder et al. 2025, 10.1051/0004-6361/202452859, SupJup VI
+2MASS J05002100+0330501 (J0500), young brown dwarf, 155^{+56}_{-53}, none reported, VLT/CRIRES+, Mulder et al. 2025, 10.1051/0004-6361/202452859, SupJup VI
+DENIS J025503.3-470049 (J0255), brown dwarf, 184^{+61}_{-40}, none reported, VLT/CRIRES+, de Regt et al. 2024, 10.1051/0004-6361/202348508, SupJup I
+HIP 55507 A, K6 host-star, 79^{+21}_{-16}, 288^{+125}_{-70}, Keck/NIRSPEC, Xuan et al. 2024, 10.3847/1538-4357/ad1243,
+HIP 55507 B, M7 companion, 98^{+28}_{-22}, 240^{+145}_{-80}, Keck/NIRSPEC, Xuan et al. 2024, 10.3847/1538-4357/ad1243,
+GQ Lup B, super-Jupiter, 153^{+43}_{-21}, none reported, Keck/KPIC, Xuan et al. 2024, 10.3847/1538-4357/ad4796
+HIP 79098 b, super-Jupiter, 52^{+22}_{-17}, none reported, Keck/KPIC, Xuan et al. 2024, 10.3847/1538-4357/ad4796
+DH Tau b, super-Jupiter, 53^{+50}_{-24}, none reported, Keck/KPIC, Xuan et al. 2024, 10.3847/1538-4357/ad4796
+WISEPA J182831.08+265037.8 (WISE 1828), brown dwarf, >40, none reported, JWST/NIRSpec, Lew et al. 2024, 10.3847/1538-3881/ad3425, Y dwarf
+2MASS J04151954-0935066 (2MASS 0415-0935), brown dwarf, 97^{+9}_{-8}, none reported, JWST/NIRSpec, Hood et al. 2024, 10.48550/arXiv.2402.05345, T dwarf; preprint
+2MASS J04151954-0935066 (2MASS 0415-0935), brown dwarf, 87 (5), 481^{+68}_{-58}, JWST/NIRSpec,Gonzalez Picos et al. in prep., none, T dwarf; dataset from Hood et al. 2024
+HD 19467 B, brown dwarf, 155^{+19}_{-15}, 683^{+170}_{-113}, JWST/NIRSpec, Gonzalez Picos et al. in prep., none, T dwarf; dataset from Ruffio et al. 2023

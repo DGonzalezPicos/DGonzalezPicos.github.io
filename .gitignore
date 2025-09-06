@@ -1,65 +1,19 @@
-# Images
-*.png
-*.jpg
-*.jpeg
-
-# Configuration files with sensitive information
+# Server configuration and data
 server_config.json
-
-# Data files with user submissions and personal information
 data/
-data/pending_submissions.csv
-data/approved_measurements.csv
-*.csv
 
-# Server logs and process files
-server.log
-server.pid
-*.log
-data/server.log
-data/server.pid
-data/systemd.log
-
-# Email setup credentials
-EMAIL_SETUP.md
-
-# Python cache and compiled files
+# Python
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-.Python
-*sh
-# Virtual environments
-venv/
-env/
-.venv/
 
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# Logs
+*.log
 
-# OS generated files
+# OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
-# Backup files
-*.bak
-*.backup
-*.tmp
-docs/*
-
-# Shell scripts (contain system-specific paths and configurations)
-*.sh
-start.sh
-start_submission_server.sh
-start_submissions.sh
-run_permanent_server.sh
+# Data
+data/
+*.png

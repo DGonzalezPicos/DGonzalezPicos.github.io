@@ -621,7 +621,7 @@
 						
 						<div style="text-align: center; margin: 2rem 0;">
 							<a href="isotope_ratios_viewer.html" class="csv-button" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: transform 0.2s ease; margin-right: 1rem;">📊 View Raw CSV Data</a>
-							<button id="submitMeasurementBtn" class="csv-button" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: transform 0.2s ease; border: none; cursor: pointer;">➕ Submit New Measurement</button>
+							<button id="submitMeasurementBtn" class="csv-button" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: none; transition: transform 0.2s ease; border: none; cursor: pointer;">➕ Submit New Measurement</button>
 						</div>
 						
 						<div style="margin-top: 2rem; padding: 1rem; background-color: #31383e; border-radius: 8px;">
@@ -637,9 +637,8 @@
 							</p>
 						</div>
 						
-						<div id="serverStatus" style="text-align: center; margin: 1rem 0; padding: 6px; border-radius: 4px; font-size: 0.75em; opacity: 0.8;">
-							<div id="statusIndicator" style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: #f39c12; margin-right: 6px;"></div>
-							<span id="statusText">Checking server status...</span>
+						<div id="serverStatus" style="text-align: center; margin: 1rem 0;">
+							<div id="statusIndicator" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #f39c12; margin-right: 6px;"></div>
 						</div>
 						
 					</div>
@@ -788,7 +787,6 @@
 			
 			// Server status elements
 			const statusIndicator = document.getElementById('statusIndicator');
-			const statusText = document.getElementById('statusText');
 			const serverStatus = document.getElementById('serverStatus');
 			
 				// Check server status
@@ -798,29 +796,28 @@
 						const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
 							? 'http://localhost:5000/api/submissions'
 							: `${window.location.protocol}//${window.location.hostname}:5000/api/submissions`;
-						
-						const response = await fetch(apiUrl, {
-							method: 'GET',
-							timeout: 3000
-						});
+					
+					const controller = new AbortController();
+					const timeoutId = setTimeout(() => controller.abort(), 5000);
+					
+					const response = await fetch(apiUrl, {
+						method: 'GET',
+						signal: controller.signal
+					});
+					
+					clearTimeout(timeoutId);
 					
 					if (response.ok) {
-						// Server is running
+						// Server is running - show submit button
 						statusIndicator.style.backgroundColor = '#27ae60';
-						statusText.textContent = 'Database submission available';
-						serverStatus.style.backgroundColor = '#d4edda';
-						serverStatus.style.color = '#155724';
-						serverStatus.style.border = '1px solid #c3e6cb';
+						submitBtn.style.display = 'inline-block';
 					} else {
-						throw new Error('Server responded with error');
+						throw new Error(`Server responded with status: ${response.status}`);
 					}
 				} catch (error) {
-					// Server is not running
+					// Server is not running - hide submit button
 					statusIndicator.style.backgroundColor = '#e74c3c';
-					statusText.textContent = 'Database submission unavailable - will use email fallback';
-					serverStatus.style.backgroundColor = '#f8d7da';
-					serverStatus.style.color = '#721c24';
-					serverStatus.style.border = '1px solid #f5c6cb';
+					submitBtn.style.display = 'none';
 				}
 			}
 			
