@@ -743,6 +743,14 @@
 					</div>
 					
 					<div class="form-group">
+						<label for="doi" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">DOI (optional)</label>
+						<input type="text" id="doi" name="doi" placeholder="e.g., 10.1051/0004-6361/202451936" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+						<div style="font-size: 0.85em; color: #bdc3c7; margin-top: 0.3rem;">
+							Enter just the DOI number (e.g., 10.1051/0004-6361/202451936) without the full URL
+						</div>
+					</div>
+					
+					<div class="form-group">
 						<label for="notes" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Notes</label>
 						<textarea id="notes" name="notes" rows="3" placeholder="Additional notes or comments..." style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px; resize: vertical;"></textarea>
 					</div>
@@ -785,7 +793,7 @@
 			// Check server status
 			async function checkServerStatus() {
 				try {
-					const response = await fetch('/api/submissions', {
+					const response = await fetch('http://localhost:5000/api/submissions', {
 						method: 'GET',
 						timeout: 3000
 					});
@@ -965,7 +973,7 @@
 				
 				try {
 					// Try to submit to backend first
-					const response = await fetch('/api/submit', {
+					const response = await fetch('http://localhost:5000/api/submit', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -1016,6 +1024,7 @@ Carbon Isotope Ratio (¹²C/¹³C): ${data.carbonRatio}
 Oxygen Isotope Ratio (¹⁶O/¹⁸O): ${data.oxygenRatio || 'Not provided'}
 Instrument: ${data.instrument || 'Not specified'}
 Reference: ${data.reference}
+DOI: ${data.doi || 'Not provided'}
 Notes: ${data.notes || 'None'}
 Submitter Email: ${data.submitterEmail || 'Not provided'}
 
