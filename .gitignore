@@ -7,7 +7,7 @@
 server_config.json
 
 # Data files with user submissions and personal information
-data/*
+data/
 data/pending_submissions.csv
 data/approved_measurements.csv
 *.csv
@@ -56,3 +56,10 @@ Thumbs.db
 *.backup
 *.tmp
 docs/*
+
+# Shell scripts (contain system-specific paths and configurations)
+*.sh
+start.sh
+start_submission_server.sh
+start_submissions.sh
+run_permanent_server.sh
