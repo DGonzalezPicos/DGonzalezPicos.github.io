@@ -1,0 +1,391 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Raw Isotope Data (CSV) - Darío González Picos</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .download-section {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #e8f4fd;
+            border-radius: 8px;
+        }
+        .download-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 0 10px;
+            transition: transform 0.2s ease;
+        }
+        .download-button:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+        .csv-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        .csv-table th, .csv-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .csv-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+        }
+        .csv-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .csv-table tr:hover {
+            background-color: #e8f4fd;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .csv-table {
+                font-size: 0.8rem;
+            }
+            .csv-table th, .csv-table td {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="isotope_ratios.html" class="back-link">← Back to Formatted Table</a>
+        
+        <h1>Raw Isotope Ratios Data (CSV Format)</h1>
+        
+        <div class="download-section">
+            <p><strong>Download CSV Data:</strong></p>
+            <a href="isotope_ratios.csv" download class="download-button">📥 Download CSV File</a>
+        </div>
+        
+        <div style="overflow-x: auto;">
+            <table class="csv-table">
+                <thead>
+                    <tr>
+                        <th>target</th>
+                        <th>category</th>
+                        <th>12C/13C</th>
+                        <th>16O/18O</th>
+                        <th>instrument</th>
+                        <th>reference</th>
+                        <th>doi</th>
+                        <th>note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>YSES 1 b</td>
+                        <td>super-Jupiter</td>
+                        <td>88 (13)</td>
+                        <td>none</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>Zhang et al. 2024</td>
+                        <td>10.3847/1538-3881/ad7ea9</td>
+                        <td>SupJup III</td>
+                    </tr>
+                    <tr>
+                        <td>YSES 1 A</td>
+                        <td>star (K3)</td>
+                        <td>66 (5)</td>
+                        <td>none</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>Zhang et al. 2024</td>
+                        <td>10.3847/1538-3881/ad7ea9</td>
+                        <td>SupJup III</td>
+                    </tr>
+                    <tr>
+                        <td>GQ Lup B</td>
+                        <td>super-Jupiter</td>
+                        <td>53^{+7}_{-6}</td>
+                        <td>none</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>González Picos et al. 2025</td>
+                        <td>10.1051/0004-6361/202451936</td>
+                        <td>SupJup IV</td>
+                    </tr>
+                    <tr>
+                        <td>GQ Lup A</td>
+                        <td>K6 host-star</td>
+                        <td>51^{+10}_{-8}</td>
+                        <td>none</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>González Picos et al. 2025</td>
+                        <td>10.1051/0004-6361/202451936</td>
+                        <td>SupJup IV</td>
+                    </tr>
+                    <tr>
+                        <td>AB Pic b</td>
+                        <td>super-Jupiter</td>
+                        <td>102 (8)</td>
+                        <td>none</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>Gandhi et al. 2025</td>
+                        <td>https://doi.org/10.1093/mnras/staf004</td>
+                        <td>SupJup V</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J03552337+1133437 (2M0355)</td>
+                        <td>young brown dwarf</td>
+                        <td>97 (+25 / -18)</td>
+                        <td>none</td>
+                        <td>Keck/NIRSPEC</td>
+                        <td>Zhang et al. 2021</td>
+                        <td>10.1051/0004-6361/202141502</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J03552337+1133437 (2M0355)</td>
+                        <td>young brown dwarf</td>
+                        <td>95 (7)</td>
+                        <td>none</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>Grasser et al. 2025</td>
+                        <td>https://doi.org/10.1051/0004-6361/202554195</td>
+                        <td>SupJup VIII</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J14252798–3650229 (2M1425)</td>
+                        <td>young brown dwarf</td>
+                        <td>110^{+11}_{-10}</td>
+                        <td>none</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>Grasser et al. 2025</td>
+                        <td>https://doi.org/10.1051/0004-6361/202554195</td>
+                        <td>SupJup VIII</td>
+                    </tr>
+                    <tr>
+                        <td>TWA 28</td>
+                        <td>young brown dwarf</td>
+                        <td>81^{+28}_{-19}</td>
+                        <td>H_2^{18}O detection (2.1σ)</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>González Picos et al. 2024</td>
+                        <td>10.1051/0004-6361/202450028</td>
+                        <td>SupJup II</td>
+                    </tr>
+                    <tr>
+                        <td>TWA 28</td>
+                        <td>young brown dwarf</td>
+                        <td>75 (2)</td>
+                        <td>683 (53)</td>
+                        <td>JWST/NIRSpec</td>
+                        <td>González Picos et al. in review</td>
+                        <td>none</td>
+                        <td>reanalysis of Manjavacas et al. 2024</td>
+                    </tr>
+                    <tr>
+                        <td>TWA 27A</td>
+                        <td>young brown dwarf</td>
+                        <td>79^{+14}_{-11}</td>
+                        <td>645^{+80}_{-70}</td>
+                        <td>JWST/NIRSpec</td>
+                        <td>González Picos et al. in review</td>
+                        <td>none</td>
+                        <td>reanalysis of Manjavacas et al. 2024</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J08561384-1342242 (J0856)</td>
+                        <td>young brown dwarf</td>
+                        <td>79^{+20}_{-14}</td>
+                        <td>H_2^{18}O detection (3.3σ)</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>González Picos et al. 2024</td>
+                        <td>10.1051/0004-6361/202450028</td>
+                        <td>SupJup II</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J12003792-7845082 (J1200)</td>
+                        <td>young brown dwarf</td>
+                        <td>114^{+69}_{-33} (≈2σ)</td>
+                        <td>none reported</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>González Picos et al. 2024</td>
+                        <td>10.1051/0004-6361/202450028</td>
+                        <td>SupJup II</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J08354256-0819237 (J0835)</td>
+                        <td>young brown dwarf</td>
+                        <td>89 (11)</td>
+                        <td>H_2^{18}O weak detection</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>Mulder et al. 2025</td>
+                        <td>10.1051/0004-6361/202452859</td>
+                        <td>SupJup VI</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J05012406-0010452 (J0501)</td>
+                        <td>young brown dwarf</td>
+                        <td>117^{+20}_{-17}</td>
+                        <td>none reported</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>Mulder et al. 2025</td>
+                        <td>10.1051/0004-6361/202452859</td>
+                        <td>SupJup VI</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J05002100+0330501 (J0500)</td>
+                        <td>young brown dwarf</td>
+                        <td>155^{+56}_{-53}</td>
+                        <td>none reported</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>Mulder et al. 2025</td>
+                        <td>10.1051/0004-6361/202452859</td>
+                        <td>SupJup VI</td>
+                    </tr>
+                    <tr>
+                        <td>DENIS J025503.3-470049 (J0255)</td>
+                        <td>brown dwarf</td>
+                        <td>184^{+61}_{-40}</td>
+                        <td>none reported</td>
+                        <td>VLT/CRIRES+</td>
+                        <td>de Regt et al. 2024</td>
+                        <td>10.1051/0004-6361/202348508</td>
+                        <td>SupJup I</td>
+                    </tr>
+                    <tr>
+                        <td>HIP 55507 A</td>
+                        <td>K6 host-star</td>
+                        <td>79^{+21}_{-16}</td>
+                        <td>288^{+125}_{-70}</td>
+                        <td>Keck/NIRSPEC</td>
+                        <td>Xuan et al. 2024</td>
+                        <td>10.3847/1538-4357/ad1243</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>HIP 55507 B</td>
+                        <td>M7 companion</td>
+                        <td>98^{+28}_{-22}</td>
+                        <td>240^{+145}_{-80}</td>
+                        <td>Keck/NIRSPEC</td>
+                        <td>Xuan et al. 2024</td>
+                        <td>10.3847/1538-4357/ad1243</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>GQ Lup B</td>
+                        <td>super-Jupiter</td>
+                        <td>153^{+43}_{-21}</td>
+                        <td>none reported</td>
+                        <td>Keck/KPIC</td>
+                        <td>Xuan et al. 2024</td>
+                        <td>10.3847/1538-4357/ad4796</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>HIP 79098 b</td>
+                        <td>super-Jupiter</td>
+                        <td>52^{+22}_{-17}</td>
+                        <td>none reported</td>
+                        <td>Keck/KPIC</td>
+                        <td>Xuan et al. 2024</td>
+                        <td>10.3847/1538-4357/ad4796</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>DH Tau b</td>
+                        <td>super-Jupiter</td>
+                        <td>53^{+50}_{-24}</td>
+                        <td>none reported</td>
+                        <td>Keck/KPIC</td>
+                        <td>Xuan et al. 2024</td>
+                        <td>10.3847/1538-4357/ad4796</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>WISEPA J182831.08+265037.8 (WISE 1828)</td>
+                        <td>brown dwarf</td>
+                        <td>>40</td>
+                        <td>none reported</td>
+                        <td>JWST/NIRSpec</td>
+                        <td>Lew et al. 2024</td>
+                        <td>10.3847/1538-3881/ad3425</td>
+                        <td>Y dwarf</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J04151954-0935066 (2MASS 0415-0935)</td>
+                        <td>brown dwarf</td>
+                        <td>97^{+9}_{-8}</td>
+                        <td>none reported</td>
+                        <td>JWST/NIRSpec</td>
+                        <td>Hood et al. 2024</td>
+                        <td>10.48550/arXiv.2402.05345</td>
+                        <td>T dwarf; preprint</td>
+                    </tr>
+                    <tr>
+                        <td>2MASS J04151954-0935066 (2MASS 0415-0935)</td>
+                        <td>brown dwarf</td>
+                        <td>87 (5)</td>
+                        <td>481^{+68}_{-58}</td>
+                        <td>JWST/NIRSpec</td>
+                        <td>Gonzalez Picos et al. in prep.</td>
+                        <td>none</td>
+                        <td>T dwarf; dataset from Hood et al. 2024</td>
+                    </tr>
+                    <tr>
+                        <td>HD 19467 B</td>
+                        <td>brown dwarf</td>
+                        <td>155^{+19}_{-15}</td>
+                        <td>683^{+170}_{-113}</td>
+                        <td>JWST/NIRSpec</td>
+                        <td>Gonzalez Picos et al. in prep.</td>
+                        <td>none</td>
+                        <td>T dwarf; dataset from Ruffio et al. 2023</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+            <p><strong>About this data:</strong></p>
+            <ul>
+                <li>This table shows the raw CSV data used to generate the formatted isotope ratios table</li>
+                <li>Total entries: 26</li>
+                <li>Last updated: 2025-09-06</li>
+                <li>You can download this data in CSV format using the buttons above</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

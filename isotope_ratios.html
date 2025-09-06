@@ -1,0 +1,594 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Isotope Ratios - Darío González Picos</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+		<style>
+			.isotope-table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 2rem 0;
+				font-size: 0.9rem;
+				box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+				border-radius: 8px;
+				overflow: hidden;
+			}
+			
+			.isotope-table th, .isotope-table td {
+				padding: 12px 8px;
+				text-align: left;
+				border: 1px solid #ddd;
+			}
+			
+			.isotope-table th {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				font-weight: bold;
+				text-transform: uppercase;
+				font-size: 0.85rem;
+				letter-spacing: 0.5px;
+			}
+			
+			.isotope-table tr:nth-child(even) {
+				background-color: #2c3e50;
+				color: white;
+			}
+			
+			.isotope-table tr:nth-child(odd) {
+				background-color: #34495e;
+				color: white;
+			}
+			
+			.isotope-table tr:hover {
+				background-color: #3498db;
+				color: white;
+				transition: background-color 0.3s ease;
+			}
+			
+			/* Category color coding */
+			.category-super-jupiter {
+				border-left: 6px solid #ff6b6b;
+			}
+			
+			.category-young-brown-dwarf {
+				border-left: 6px solid #4ecdc4;
+			}
+			
+			.category-brown-dwarf {
+				border-left: 6px solid #3b1b75;
+			}
+			
+			.category-star {
+				border-left: 6px solid #f9ca24;
+			}
+			
+			/* Instrument color coding removed from borders - now only text */
+			
+			/* Instrument text colors */
+			.instrument-text-crires {
+				color: #eb7c6d !important;
+				font-weight: bold;
+			}
+			
+			.instrument-text-keck-nirspec {
+				color: #ca9ade !important;
+				font-weight: bold;
+			}
+			
+			.instrument-text-kpic {
+				color: #27ae60 !important;
+				font-weight: bold;
+			}
+			
+			.instrument-text-jwst-nirspec {
+				color: #49bef0 !important;
+				font-weight: bold;
+			}
+			
+			.instrument-text-other {
+				color: #95a5a6 !important;
+				font-weight: bold;
+			}
+			
+			.category-legend {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+				margin: 1rem 0 2rem 0;
+				font-size: 0.9rem;
+			}
+			
+			.legend-item {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			
+			.legend-color {
+				width: 20px;
+				height: 15px;
+				border-radius: 3px;
+			}
+			
+			.super-jupiter-color { background-color: #ff6b6b; }
+			.young-brown-dwarf-color { background-color: #4ecdc4; }
+			.brown-dwarf-color { background-color: #3b1b75; }
+			.star-color { background-color: #f9ca24; }
+			
+			.doi-link {
+				color: #667eea;
+				text-decoration: none;
+				font-weight: 500;
+			}
+			
+			.doi-link:hover {
+				text-decoration: underline;
+			}
+			
+			.back-button {
+				display: inline-block;
+				margin-bottom: 2rem;
+				padding: 10px 20px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 5px;
+				font-weight: bold;
+				transition: transform 0.2s ease;
+			}
+			
+			.back-button:hover {
+				transform: translateY(-2px);
+				text-decoration: none;
+				color: white;
+			}
+			
+			.csv-button:hover {
+				transform: translateY(-2px);
+				text-decoration: none;
+				color: white;
+			}
+			
+			.table-container {
+				overflow-x: auto;
+				margin: 2rem 0;
+			}
+			
+			.table-description {
+				margin-bottom: 2rem;
+				line-height: 1.6;
+				color: white;
+			}
+			
+			@media (max-width: 768px) {
+				.isotope-table {
+					font-size: 0.8rem;
+				}
+				
+				.isotope-table th, .isotope-table td {
+					padding: 8px 4px;
+				}
+				
+				.category-legend {
+					justify-content: center;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="index.html#intro">Welcome</a></li>
+							<li><a href="index.html#one">About</a></li>
+							<li><a href="index.html#two">Publications</a></li>
+                            <li><a href="index.html#three">Research</a></li>
+							<li><a href="index.html#four">Get in touch</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<section class="wrapper style1 fade-up">
+					<div class="inner">
+						<a href="index.html#three" class="back-button">← Back to Research</a>
+						
+						<h1>Carbon and oxygen isotopic ratios</h1>
+						
+						<div class="table-description">
+							<p>This table compiles isotopic ratio measurements from the literature for various astronomical objects, including directly-imaged exoplanets, brown dwarfs, and stellar companions.
+                                Last updated: 2025-09-06
+                            </p>
+						</div>
+						
+						<div class="category-legend">
+							<div style="margin-bottom: 1rem;">
+								<strong>Target Categories:</strong>
+								<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem;">
+									<div class="legend-item">
+										<div class="legend-color super-jupiter-color"></div>
+										<span>Super-Jupiter</span>
+									</div>
+									<div class="legend-item">
+										<div class="legend-color young-brown-dwarf-color"></div>
+										<span>Young Brown Dwarf</span>
+									</div>
+									<div class="legend-item">
+										<div class="legend-color brown-dwarf-color"></div>
+										<span>Brown Dwarf</span>
+									</div>
+									<div class="legend-item">
+										<div class="legend-color star-color"></div>
+										<span>Star</span>
+									</div>
+								</div>
+							</div>
+							<div>
+								<strong>Instruments:</strong>
+								<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem;">
+									<div class="legend-item">
+										<span class="instrument-text-crires">CRIRES+</span>
+									</div>
+									<div class="legend-item">
+										<span class="instrument-text-keck-nirspec">Keck/NIRSPEC</span>
+									</div>
+									<div class="legend-item">
+										<span class="instrument-text-kpic">Keck/KPIC</span>
+									</div>
+									<div class="legend-item">
+										<span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="table-container">
+							<table class="isotope-table">
+								<thead>
+									<tr>
+										<th>Target</th>
+										<th>Category</th>
+										<th><sup>12</sup>C/<sup>13</sup>C</th>
+										<th><sup>16</sup>O/<sup>18</sup>O</th>
+										<th>Instrument</th>
+										<th>Reference</th>
+										<th>Notes</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									<tr class="category-super-jupiter">
+										<td><strong>YSES 1 b</strong></td>
+										<td>Super-Jupiter</td>
+										<td>88 ± 13</td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.3847/1538-3881/ad7ea9" class="doi-link" target="_blank">Zhang et al. 2024</a></td>
+										<td>SupJup III</td>
+									</tr>
+									<tr class="category-star">
+										<td><strong>YSES 1 A</strong></td>
+										<td>Star (K3)</td>
+										<td>66 ± 5</td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.3847/1538-3881/ad7ea9" class="doi-link" target="_blank">Zhang et al. 2024</a></td>
+										<td>SupJup III</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>GQ Lup B</strong></td>
+										<td>Super-Jupiter</td>
+										<td>53<sup>+7</sup><sub>-6</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202451936" class="doi-link" target="_blank">González Picos et al. 2025</a></td>
+										<td>SupJup IV</td>
+									</tr>
+									<tr class="category-star">
+										<td><strong>GQ Lup A</strong></td>
+										<td>Star (K6)</td>
+										<td>51<sup>+10</sup><sub>-8</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202451936" class="doi-link" target="_blank">González Picos et al. 2025</a></td>
+										<td>SupJup IV</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>AB Pic b</strong></td>
+										<td>Super-Jupiter</td>
+										<td>102 ± 8</td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1093/mnras/staf004" class="doi-link" target="_blank">Gandhi et al. 2025</a></td>
+										<td>SupJup V</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J03552337+1133437</strong><br><small>(2M0355)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>97<sup>+25</sup><sub>-18</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-keck-nirspec">Keck/NIRSPEC</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202141502" class="doi-link" target="_blank">Zhang et al. 2021</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J03552337+1133437</strong><br><small>(2M0355)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>95 ± 7</td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202554195" class="doi-link" target="_blank">Grasser et al. 2025</a></td>
+										<td>SupJup VIII</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J14252798–3650229</strong><br><small>(2M1425)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>110<sup>+11</sup><sub>-10</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202554195" class="doi-link" target="_blank">Grasser et al. 2025</a></td>
+										<td>SupJup VIII</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>TWA 28</strong></td>
+										<td>Young Brown Dwarf</td>
+										<td>81<sup>+28</sup><sub>-19</sub></td>
+										<td>H<sub>2</sub><sup>18</sup>O detection (2.1σ)</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202450028" class="doi-link" target="_blank">González Picos et al. 2024</a></td>
+										<td>SupJup II</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>TWA 28</strong></td>
+										<td>Young Brown Dwarf</td>
+										<td>75 ± 2</td>
+										<td>683 ± 53</td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td>González Picos et al. in review</td>
+										<td>reanalysis of Manjavacas et al. 2024</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>TWA 27A</strong></td>
+										<td>Young Brown Dwarf</td>
+										<td>79<sup>+14</sup><sub>-11</sub></td>
+										<td>645<sup>+80</sup><sub>-70</sub></td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td>González Picos et al. in review</td>
+										<td>reanalysis of Manjavacas et al. 2024</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J08561384-1342242</strong><br><small>(J0856)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>79<sup>+20</sup><sub>-14</sub></td>
+										<td>H<sub>2</sub><sup>18</sup>O detection (3.3σ)</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202450028" class="doi-link" target="_blank">González Picos et al. 2024</a></td>
+										<td>SupJup II</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J12003792-7845082</strong><br><small>(J1200)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>114<sup>+69</sup><sub>-33</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202450028" class="doi-link" target="_blank">González Picos et al. 2024</a></td>
+										<td>SupJup II</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J08354256-0819237</strong><br><small>(J0835)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>89 ± 11</td>
+										<td>H<sub>2</sub><sup>18</sup>O weak detection</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202452859" class="doi-link" target="_blank">Mulder et al. 2025</a></td>
+										<td>SupJup VI</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J05012406-0010452</strong><br><small>(J0501)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>117<sup>+20</sup><sub>-17</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202452859" class="doi-link" target="_blank">Mulder et al. 2025</a></td>
+										<td>SupJup VI</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J05002100+0330501</strong><br><small>(J0500)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>155<sup>+56</sup><sub>-53</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202452859" class="doi-link" target="_blank">Mulder et al. 2025</a></td>
+										<td>SupJup VI</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>DENIS J025503.3-470049</strong><br><small>(J0255)</small></td>
+										<td>Brown Dwarf</td>
+										<td>184<sup>+61</sup><sub>-40</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202348508" class="doi-link" target="_blank">de Regt et al. 2024</a></td>
+										<td>SupJup I</td>
+									</tr>
+									<tr class="category-star">
+										<td><strong>HIP 55507 A</strong></td>
+										<td>Star (K6)</td>
+										<td>79<sup>+21</sup><sub>-16</sub></td>
+										<td>288<sup>+125</sup><sub>-70</sub></td>
+										<td><span class="instrument-text-keck-nirspec">Keck/NIRSPEC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad1243" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-star">
+										<td><strong>HIP 55507 B</strong></td>
+										<td>Star (M7)</td>
+										<td>98<sup>+28</sup><sub>-22</sub></td>
+										<td>240<sup>+145</sup><sub>-80</sub></td>
+										<td><span class="instrument-text-keck-nirspec">Keck/NIRSPEC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad1243" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>GQ Lup B</strong></td>
+										<td>Super-Jupiter</td>
+										<td>153<sup>+43</sup><sub>-21</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-kpic">Keck/KPIC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad4796" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>HIP 79098 b</strong></td>
+										<td>Super-Jupiter</td>
+										<td>52<sup>+22</sup><sub>-17</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-kpic">Keck/KPIC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad4796" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>DH Tau b</strong></td>
+										<td>Super-Jupiter</td>
+										<td>53<sup>+50</sup><sub>-24</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-kpic">Keck/KPIC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad4796" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>WISEPA J182831.08+265037.8</strong><br><small>(WISE 1828)</small></td>
+										<td>Brown Dwarf</td>
+										<td>>40</td>
+										<td>—</td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td><a href="https://doi.org/10.3847/1538-3881/ad3425" class="doi-link" target="_blank">Lew et al. 2024</a></td>
+										<td>Y dwarf</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>2MASS J04151954-0935066</strong><br><small>(2MASS 0415-0935)</small></td>
+										<td>Brown Dwarf</td>
+										<td>97<sup>+9</sup><sub>-8</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td><a href="https://doi.org/10.48550/arXiv.2402.05345" class="doi-link" target="_blank">Hood et al. 2024</a></td>
+										<td>T dwarf; preprint</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>2MASS J04151954-0935066</strong><br><small>(2MASS 0415-0935)</small></td>
+										<td>Brown Dwarf</td>
+										<td>87 ± 5</td>
+										<td>481<sup>+68</sup><sub>-58</sub></td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td>Gonzalez Picos et al. in prep.</td>
+										<td>T dwarf; dataset from Hood et al. 2024</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>HD 19467 B</strong></td>
+										<td>Brown Dwarf</td>
+										<td>155<sup>+19</sup><sub>-15</sub></td>
+										<td>683<sup>+170</sup><sub>-113</sub></td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td>Gonzalez Picos et al. in prep.</td>
+										<td>T dwarf; dataset from Ruffio et al. 2023</td>
+									</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								</tbody>
+							</table>
+						</div>
+						
+						<div style="text-align: center; margin: 2rem 0;">
+							<a href="isotope_ratios_viewer.html" class="csv-button" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: transform 0.2s ease;">📊 View Raw CSV Data</a>
+						</div>
+						
+						<div style="margin-top: 2rem; padding: 1rem; background-color: #31383e; border-radius: 8px;">
+							<p><strong>Notes:</strong></p>
+							<ul style="margin: 0.5rem 0;">
+								<li>Uncertainties are shown as superscript/subscript when asymmetric, otherwise as ± for symmetric errors</li>
+								<li>Dashes (—) indicate no measurement reported or detection below significance threshold</li>
+								<li>Detection significance levels are noted in parentheses where applicable</li>
+								<li>DOI links provide direct access to the original publications</li>
+							</ul>
+							<p style="margin-top: 1rem; font-style: italic; color: #bdc3c7;">
+								<strong>Missing measurements?</strong> If you have isotopic ratio measurements that should be included in this compilation, please contact me at <a href="mailto:picos@strw.leidenuniv.nl" style="color: #3498db;">picos@strw.leidenuniv.nl</a>.
+							</p>
+						</div>
+						
+					</div>
+				</section>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Darío González Picos. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
