@@ -7,9 +7,10 @@
 server_config.json
 
 # Data files with user submissions and personal information
-data/
+data/*
 pending_submissions.csv
 approved_measurements.csv
+*.csv
 
 # Server logs and process files
 server.log
@@ -28,7 +29,7 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
-
+*sh
 # Virtual environments
 venv/
 env/
