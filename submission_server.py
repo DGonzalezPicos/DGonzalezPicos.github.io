@@ -376,6 +376,8 @@ if __name__ == '__main__':
     print("=" * 50)
     
     try:
+        # For production: bind to all interfaces to allow external access
+        # Make sure your firewall allows port 5000
         app.run(host='0.0.0.0', port=5000, debug=False)
     except Exception as e:
         print(f"Error starting server: {e}")
