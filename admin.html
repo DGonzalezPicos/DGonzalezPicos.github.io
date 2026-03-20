@@ -1,0 +1,494 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Admin - Isotope Ratios Database</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .submission-card {
+            background-color: #2c3e50;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .submission-card.pending {
+            border-left-color: #f39c12;
+        }
+        
+        .submission-card.approved {
+            border-left-color: #27ae60;
+        }
+        
+        .submission-card.rejected {
+            border-left-color: #e74c3c;
+        }
+        
+        .submission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .submission-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+        
+        .submission-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-pending {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .status-approved {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .status-rejected {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .submission-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .detail-item {
+            background-color: #34495e;
+            padding: 0.8rem;
+            border-radius: 5px;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .detail-value {
+            color: #ecf0f1;
+            word-break: break-word;
+        }
+        
+        .submission-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-approve {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .btn-approve:hover {
+            background-color: #229954;
+        }
+        
+        .btn-reject {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .btn-reject:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background-color: #34495e;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .stat-label {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 0.5rem;
+            border: 1px solid #34495e;
+            border-radius: 5px;
+            background-color: #34495e;
+            color: white;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #bdc3c7;
+        }
+        
+        .error {
+            background-color: #e74c3c;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        
+        .success {
+            background-color: #27ae60;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 1rem;
+            }
+            
+            .submission-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .submission-actions {
+                flex-direction: column;
+            }
+            
+            .filter-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div class="admin-container">
+        <header style="margin-bottom: 2rem;">
+            <h1>Isotope Ratios Database - Admin Panel</h1>
+            <p style="color: #bdc3c7;">Review and manage measurement submissions</p>
+            <a href="isotope_ratios.html" class="btn btn-secondary">← Back to Database</a>
+        </header>
+        
+        <div id="stats" class="stats-grid">
+            <!-- Stats will be populated by JavaScript -->
+        </div>
+        
+        <div class="filter-controls">
+            <select id="statusFilter" class="filter-select">
+                <option value="all">All Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            
+            <button id="refreshBtn" class="btn btn-secondary">🔄 Refresh</button>
+        </div>
+        
+        <div id="messages">
+            <!-- Success/error messages will appear here -->
+        </div>
+        
+        <div id="loading" class="loading">
+            Loading submissions...
+        </div>
+        
+        <div id="submissions">
+            <!-- Submissions will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script>
+        let allSubmissions = [];
+        
+        // DOM elements
+        const loadingEl = document.getElementById('loading');
+        const submissionsEl = document.getElementById('submissions');
+        const statsEl = document.getElementById('stats');
+        const messagesEl = document.getElementById('messages');
+        const statusFilter = document.getElementById('statusFilter');
+        const refreshBtn = document.getElementById('refreshBtn');
+        
+        // Load submissions on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSubmissions();
+        });
+        
+        // Event listeners
+        refreshBtn.addEventListener('click', loadSubmissions);
+        statusFilter.addEventListener('change', renderSubmissions);
+        
+        async function loadSubmissions() {
+            try {
+                loadingEl.style.display = 'block';
+                submissionsEl.innerHTML = '';
+                
+                const response = await fetch('http://localhost:5000/api/submissions');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                if (data.success) {
+                    allSubmissions = data.submissions;
+                    renderStats();
+                    renderSubmissions();
+                } else {
+                    throw new Error(data.error || 'Failed to load submissions');
+                }
+            } catch (error) {
+                showMessage('Error loading submissions: ' + error.message, 'error');
+                console.error('Error loading submissions:', error);
+            } finally {
+                loadingEl.style.display = 'none';
+            }
+        }
+        
+        function renderStats() {
+            const stats = {
+                total: allSubmissions.length,
+                pending: allSubmissions.filter(s => s.status === 'pending').length,
+                approved: allSubmissions.filter(s => s.status === 'approved').length,
+                rejected: allSubmissions.filter(s => s.status === 'rejected').length
+            };
+            
+            statsEl.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${stats.total}</div>
+                    <div class="stat-label">Total Submissions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.pending}</div>
+                    <div class="stat-label">Pending Review</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.approved}</div>
+                    <div class="stat-label">Approved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.rejected}</div>
+                    <div class="stat-label">Rejected</div>
+                </div>
+            `;
+        }
+        
+        function renderSubmissions() {
+            const filterValue = statusFilter.value;
+            const filteredSubmissions = filterValue === 'all' 
+                ? allSubmissions 
+                : allSubmissions.filter(s => s.status === filterValue);
+            
+            if (filteredSubmissions.length === 0) {
+                submissionsEl.innerHTML = '<p style="text-align: center; color: #bdc3c7; padding: 2rem;">No submissions found.</p>';
+                return;
+            }
+            
+            // Sort by timestamp (newest first)
+            filteredSubmissions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            submissionsEl.innerHTML = filteredSubmissions.map(submission => `
+                <div class="submission-card ${submission.status}">
+                    <div class="submission-header">
+                        <div class="submission-title">${escapeHtml(submission.target_name)}</div>
+                        <div class="submission-status status-${submission.status}">${submission.status}</div>
+                    </div>
+                    
+                    <div class="submission-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Submission ID</div>
+                            <div class="detail-value">${escapeHtml(submission.submission_id)}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Submitted</div>
+                            <div class="detail-value">${formatDate(submission.timestamp)}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Category</div>
+                            <div class="detail-value">${escapeHtml(submission.category || 'Not specified')}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Carbon Ratio (¹²C/¹³C)</div>
+                            <div class="detail-value">${escapeHtml(submission.carbon_ratio)}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Oxygen Ratio (¹⁶O/¹⁸O)</div>
+                            <div class="detail-value">${escapeHtml(submission.oxygen_ratio || 'Not provided')}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Instrument</div>
+                            <div class="detail-value">${escapeHtml(submission.instrument || 'Not specified')}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Reference</div>
+                            <div class="detail-value">${escapeHtml(submission.reference)}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">DOI</div>
+                            <div class="detail-value">${submission.doi ? createDoiLink(submission.doi) : 'Not provided'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Notes</div>
+                            <div class="detail-value">${escapeHtml(submission.notes || 'None')}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Submitter Email</div>
+                            <div class="detail-value">${submission.submitter_email ? createEmailLink(submission.submitter_email) : 'Not provided'}</div>
+                        </div>
+                    </div>
+                    
+                    ${submission.status === 'pending' ? `
+                        <div class="submission-actions">
+                            <button class="btn btn-approve" onclick="approveSubmission('${submission.submission_id}')">
+                                ✓ Approve
+                            </button>
+                            <button class="btn btn-reject" onclick="rejectSubmission('${submission.submission_id}')">
+                                ✗ Reject
+                            </button>
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+        
+        async function approveSubmission(submissionId) {
+            if (!confirm('Are you sure you want to approve this submission?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/approve/${submissionId}`, {
+                    method: 'POST'
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    showMessage('Submission approved successfully!', 'success');
+                    loadSubmissions(); // Reload to update the display
+                } else {
+                    throw new Error(data.error || 'Failed to approve submission');
+                }
+            } catch (error) {
+                showMessage('Error approving submission: ' + error.message, 'error');
+                console.error('Error approving submission:', error);
+            }
+        }
+        
+        async function rejectSubmission(submissionId) {
+            if (!confirm('Are you sure you want to reject this submission?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/reject/${submissionId}`, {
+                    method: 'POST'
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    showMessage('Submission rejected successfully!', 'success');
+                    loadSubmissions(); // Reload to update the display
+                } else {
+                    throw new Error(data.error || 'Failed to reject submission');
+                }
+            } catch (error) {
+                showMessage('Error rejecting submission: ' + error.message, 'error');
+                console.error('Error rejecting submission:', error);
+            }
+        }
+        
+        function showMessage(text, type) {
+            const messageEl = document.createElement('div');
+            messageEl.className = type;
+            messageEl.textContent = text;
+            messagesEl.appendChild(messageEl);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                messageEl.remove();
+            }, 5000);
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function formatDate(timestamp) {
+            return new Date(timestamp).toLocaleString();
+        }
+        
+        function createDoiLink(doi) {
+            const cleanDoi = doi.replace(/^https?:\/\/(dx\.)?doi\.org\//, '');
+            return `<a href="https://doi.org/${cleanDoi}" target="_blank" style="color: #3498db;">${escapeHtml(cleanDoi)}</a>`;
+        }
+        
+        function createEmailLink(email) {
+            return `<a href="mailto:${email}" style="color: #3498db;">${escapeHtml(email)}</a>`;
+        }
+    </script>
+</body>
+</html>

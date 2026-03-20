@@ -1,0 +1,1066 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Isotope Ratios - Darío González Picos</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+		<style>
+			.isotope-table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 2rem 0;
+				font-size: 0.9rem;
+				box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+				border-radius: 8px;
+				overflow: hidden;
+			}
+			
+			.isotope-table th, .isotope-table td {
+				padding: 12px 8px;
+				text-align: left;
+				border: 1px solid #ddd;
+			}
+			
+			.isotope-table th {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				font-weight: bold;
+				text-transform: uppercase;
+				font-size: 0.85rem;
+				letter-spacing: 0.5px;
+			}
+			
+			.isotope-table tr:nth-child(even) {
+				background-color: #2c3e50;
+				color: white;
+			}
+			
+			.isotope-table tr:nth-child(odd) {
+				background-color: #34495e;
+				color: white;
+			}
+			
+			.isotope-table tr:hover {
+				background-color: #3498db;
+				color: white;
+				transition: background-color 0.3s ease;
+			}
+			
+			/* Category color coding */
+			.category-super-jupiter {
+				border-left: 6px solid #ff6b6b;
+			}
+			
+			.category-young-brown-dwarf {
+				border-left: 6px solid #4ecdc4;
+			}
+			
+			.category-brown-dwarf {
+				border-left: 6px solid #3b1b75;
+			}
+			
+			.category-star {
+				border-left: 6px solid #f9ca24;
+			}
+			
+			/* Instrument color coding removed from borders - now only text */
+			
+			/* Instrument text colors */
+			.instrument-text-crires {
+				color: #eb7c6d !important;
+				font-weight: bold;
+			}
+			
+			.instrument-text-keck-nirspec {
+				color: #ca9ade !important;
+				font-weight: bold;
+			}
+			
+			.instrument-text-kpic {
+				color: #27ae60 !important;
+				font-weight: bold;
+			}
+			
+			.instrument-text-jwst-nirspec {
+				color: #49bef0 !important;
+				font-weight: bold;
+			}
+			
+			.instrument-text-other {
+				color: #95a5a6 !important;
+				font-weight: bold;
+			}
+			
+			.category-legend {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+				margin: 1rem 0 2rem 0;
+				font-size: 0.9rem;
+			}
+			
+			.legend-item {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			
+			.legend-color {
+				width: 20px;
+				height: 15px;
+				border-radius: 3px;
+			}
+			
+			.super-jupiter-color { background-color: #ff6b6b; }
+			.young-brown-dwarf-color { background-color: #4ecdc4; }
+			.brown-dwarf-color { background-color: #3b1b75; }
+			.star-color { background-color: #f9ca24; }
+			
+			.doi-link {
+				color: #667eea;
+				text-decoration: none;
+				font-weight: 500;
+			}
+			
+			.doi-link:hover {
+				text-decoration: underline;
+			}
+			
+			.back-button {
+				display: inline-block;
+				margin-bottom: 2rem;
+				padding: 10px 20px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 5px;
+				font-weight: bold;
+				transition: transform 0.2s ease;
+			}
+			
+			.back-button:hover {
+				transform: translateY(-2px);
+				text-decoration: none;
+				color: white;
+			}
+			
+			.csv-button:hover {
+				transform: translateY(-2px);
+				text-decoration: none;
+				color: white;
+			}
+			
+			.table-container {
+				overflow-x: auto;
+				margin: 2rem 0;
+			}
+			
+			.table-description {
+				margin-bottom: 2rem;
+				line-height: 1.6;
+				color: white;
+			}
+			
+			/* Modal styles */
+			.modal {
+				animation: fadeIn 0.3s ease;
+			}
+			
+			.modal-content {
+				animation: slideIn 0.3s ease;
+			}
+			
+			@keyframes fadeIn {
+				from { opacity: 0; }
+				to { opacity: 1; }
+			}
+			
+			@keyframes slideIn {
+				from { transform: translateY(-50px); opacity: 0; }
+				to { transform: translateY(0); opacity: 1; }
+			}
+			
+			.close:hover {
+				color: #fff;
+			}
+			
+			.form-group input:focus,
+			.form-group select:focus,
+			.form-group textarea:focus {
+				outline: none;
+				border-color: #3498db;
+				box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+			}
+			
+			@media (max-width: 768px) {
+				.isotope-table {
+					font-size: 0.8rem;
+				}
+				
+				.isotope-table th, .isotope-table td {
+					padding: 8px 4px;
+				}
+				
+				.category-legend {
+					justify-content: center;
+				}
+				
+				.modal-content {
+					margin: 1% auto;
+					width: 98%;
+					padding: 1rem;
+					max-height: 95vh;
+				}
+				
+				.form-group input,
+				.form-group select,
+				.form-group textarea {
+					font-size: 16px; /* Prevent zoom on iOS */
+				}
+				
+				.modal {
+					padding: 10px;
+				}
+			}
+			
+			@media (max-width: 480px) {
+				.modal-content {
+					margin: 0.5% auto;
+					width: 99%;
+					padding: 0.8rem;
+					max-height: 98vh;
+				}
+				
+				.form-group {
+					margin-bottom: 0.8rem;
+				}
+				
+				.form-group input,
+				.form-group select,
+				.form-group textarea {
+					padding: 8px;
+					font-size: 16px;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="index.html#intro">Welcome</a></li>
+							<li><a href="index.html#one">About</a></li>
+							<li><a href="index.html#two">Publications</a></li>
+                            <li><a href="index.html#three">Research</a></li>
+							<li><a href="index.html#four">Get in touch</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<section class="wrapper style1 fade-up">
+					<div class="inner">
+						<a href="index.html#three" class="back-button">← Back to Research</a>
+						
+						<h1>Carbon and oxygen isotopic ratios</h1>
+						
+						<div class="table-description">
+							<p>This table compiles isotopic ratio measurements from the literature for various astronomical objects, including directly-imaged exoplanets, brown dwarfs, and stellar companions.
+                                Last updated: 2025-09-06
+                            </p>
+						</div>
+						
+						<div class="category-legend">
+							<div style="margin-bottom: 1rem;">
+								<strong>Target Categories:</strong>
+								<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem;">
+									<div class="legend-item">
+										<div class="legend-color super-jupiter-color"></div>
+										<span>Super-Jupiter</span>
+									</div>
+									<div class="legend-item">
+										<div class="legend-color young-brown-dwarf-color"></div>
+										<span>Young Brown Dwarf</span>
+									</div>
+									<div class="legend-item">
+										<div class="legend-color brown-dwarf-color"></div>
+										<span>Brown Dwarf</span>
+									</div>
+									<div class="legend-item">
+										<div class="legend-color star-color"></div>
+										<span>Star</span>
+									</div>
+								</div>
+							</div>
+							<div>
+								<strong>Instruments:</strong>
+								<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem;">
+									<div class="legend-item">
+										<span class="instrument-text-crires">CRIRES+</span>
+									</div>
+									<div class="legend-item">
+										<span class="instrument-text-keck-nirspec">Keck/NIRSPEC</span>
+									</div>
+									<div class="legend-item">
+										<span class="instrument-text-kpic">Keck/KPIC</span>
+									</div>
+									<div class="legend-item">
+										<span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="table-container">
+							<table class="isotope-table">
+								<thead>
+									<tr>
+										<th>Target</th>
+										<th>Category</th>
+										<th><sup>12</sup>C/<sup>13</sup>C</th>
+										<th><sup>16</sup>O/<sup>18</sup>O</th>
+										<th>Instrument</th>
+										<th>Reference</th>
+										<th>Notes</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									<tr class="category-super-jupiter">
+										<td><strong>YSES 1 b</strong></td>
+										<td>Super-Jupiter</td>
+										<td>88 ± 13</td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.3847/1538-3881/ad7ea9" class="doi-link" target="_blank">Zhang et al. 2024</a></td>
+										<td>SupJup III</td>
+									</tr>
+									<tr class="category-star">
+										<td><strong>YSES 1 A</strong></td>
+										<td>Star (K3)</td>
+										<td>66 ± 5</td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.3847/1538-3881/ad7ea9" class="doi-link" target="_blank">Zhang et al. 2024</a></td>
+										<td>SupJup III</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>GQ Lup B</strong></td>
+										<td>Super-Jupiter</td>
+										<td>53<sup>+7</sup><sub>-6</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202451936" class="doi-link" target="_blank">González Picos et al. 2025</a></td>
+										<td>SupJup IV</td>
+									</tr>
+									<tr class="category-star">
+										<td><strong>GQ Lup A</strong></td>
+										<td>Star (K6)</td>
+										<td>51<sup>+10</sup><sub>-8</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202451936" class="doi-link" target="_blank">González Picos et al. 2025</a></td>
+										<td>SupJup IV</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>AB Pic b</strong></td>
+										<td>Super-Jupiter</td>
+										<td>102 ± 8</td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1093/mnras/staf004" class="doi-link" target="_blank">Gandhi et al. 2025</a></td>
+										<td>SupJup V</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J03552337+1133437</strong><br><small>(2M0355)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>97<sup>+25</sup><sub>-18</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-keck-nirspec">Keck/NIRSPEC</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202141502" class="doi-link" target="_blank">Zhang et al. 2021</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J03552337+1133437</strong><br><small>(2M0355)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>95 ± 7</td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202554195" class="doi-link" target="_blank">Grasser et al. 2025</a></td>
+										<td>SupJup VIII</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J14252798–3650229</strong><br><small>(2M1425)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>110<sup>+11</sup><sub>-10</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202554195" class="doi-link" target="_blank">Grasser et al. 2025</a></td>
+										<td>SupJup VIII</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>TWA 28</strong></td>
+										<td>Young Brown Dwarf</td>
+										<td>81<sup>+28</sup><sub>-19</sub></td>
+										<td>H<sub>2</sub><sup>18</sup>O detection (2.1σ)</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202450028" class="doi-link" target="_blank">González Picos et al. 2024</a></td>
+										<td>SupJup II</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>TWA 28</strong></td>
+										<td>Young Brown Dwarf</td>
+										<td>75 ± 2</td>
+										<td>683 ± 53</td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td>González Picos et al. in review</td>
+										<td>reanalysis of Manjavacas et al. 2024</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>TWA 27A</strong></td>
+										<td>Young Brown Dwarf</td>
+										<td>79<sup>+14</sup><sub>-11</sub></td>
+										<td>645<sup>+80</sup><sub>-70</sub></td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td>González Picos et al. in review</td>
+										<td>reanalysis of Manjavacas et al. 2024</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J08561384-1342242</strong><br><small>(J0856)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>79<sup>+20</sup><sub>-14</sub></td>
+										<td>H<sub>2</sub><sup>18</sup>O detection (3.3σ)</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202450028" class="doi-link" target="_blank">González Picos et al. 2024</a></td>
+										<td>SupJup II</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J12003792-7845082</strong><br><small>(J1200)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>114<sup>+69</sup><sub>-33</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202450028" class="doi-link" target="_blank">González Picos et al. 2024</a></td>
+										<td>SupJup II</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J08354256-0819237</strong><br><small>(J0835)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>89 ± 11</td>
+										<td>H<sub>2</sub><sup>18</sup>O weak detection</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202452859" class="doi-link" target="_blank">Mulder et al. 2025</a></td>
+										<td>SupJup VI</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J05012406-0010452</strong><br><small>(J0501)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>117<sup>+20</sup><sub>-17</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202452859" class="doi-link" target="_blank">Mulder et al. 2025</a></td>
+										<td>SupJup VI</td>
+									</tr>
+									<tr class="category-young-brown-dwarf">
+										<td><strong>2MASS J05002100+0330501</strong><br><small>(J0500)</small></td>
+										<td>Young Brown Dwarf</td>
+										<td>155<sup>+56</sup><sub>-53</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202452859" class="doi-link" target="_blank">Mulder et al. 2025</a></td>
+										<td>SupJup VI</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>DENIS J025503.3-470049</strong><br><small>(J0255)</small></td>
+										<td>Brown Dwarf</td>
+										<td>184<sup>+61</sup><sub>-40</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-crires">VLT/CRIRES+</span></td>
+										<td><a href="https://doi.org/10.1051/0004-6361/202348508" class="doi-link" target="_blank">de Regt et al. 2024</a></td>
+										<td>SupJup I</td>
+									</tr>
+									<tr class="category-star">
+										<td><strong>HIP 55507 A</strong></td>
+										<td>Star (K6)</td>
+										<td>79<sup>+21</sup><sub>-16</sub></td>
+										<td>288<sup>+125</sup><sub>-70</sub></td>
+										<td><span class="instrument-text-keck-nirspec">Keck/NIRSPEC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad1243" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-star">
+										<td><strong>HIP 55507 B</strong></td>
+										<td>Star (M7)</td>
+										<td>98<sup>+28</sup><sub>-22</sub></td>
+										<td>240<sup>+145</sup><sub>-80</sub></td>
+										<td><span class="instrument-text-keck-nirspec">Keck/NIRSPEC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad1243" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>GQ Lup B</strong></td>
+										<td>Super-Jupiter</td>
+										<td>153<sup>+43</sup><sub>-21</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-kpic">Keck/KPIC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad4796" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>HIP 79098 b</strong></td>
+										<td>Super-Jupiter</td>
+										<td>52<sup>+22</sup><sub>-17</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-kpic">Keck/KPIC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad4796" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-super-jupiter">
+										<td><strong>DH Tau b</strong></td>
+										<td>Super-Jupiter</td>
+										<td>53<sup>+50</sup><sub>-24</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-kpic">Keck/KPIC</span></td>
+										<td><a href="https://doi.org/10.3847/1538-4357/ad4796" class="doi-link" target="_blank">Xuan et al. 2024</a></td>
+										<td>—</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>WISEPA J182831.08+265037.8</strong><br><small>(WISE 1828)</small></td>
+										<td>Brown Dwarf</td>
+										<td>>40</td>
+										<td>—</td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td><a href="https://doi.org/10.3847/1538-3881/ad3425" class="doi-link" target="_blank">Lew et al. 2024</a></td>
+										<td>Y dwarf</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>2MASS J04151954-0935066</strong><br><small>(2MASS 0415-0935)</small></td>
+										<td>Brown Dwarf</td>
+										<td>97<sup>+9</sup><sub>-8</sub></td>
+										<td>—</td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td><a href="https://doi.org/10.48550/arXiv.2402.05345" class="doi-link" target="_blank">Hood et al. 2024</a></td>
+										<td>T dwarf; preprint</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>2MASS J04151954-0935066</strong><br><small>(2MASS 0415-0935)</small></td>
+										<td>Brown Dwarf</td>
+										<td>87 ± 5</td>
+										<td>481<sup>+68</sup><sub>-58</sub></td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td>Gonzalez Picos et al. in prep.</td>
+										<td>T dwarf; dataset from Hood et al. 2024</td>
+									</tr>
+									<tr class="category-brown-dwarf">
+										<td><strong>HD 19467 B</strong></td>
+										<td>Brown Dwarf</td>
+										<td>155<sup>+19</sup><sub>-15</sub></td>
+										<td>683<sup>+170</sup><sub>-113</sub></td>
+										<td><span class="instrument-text-jwst-nirspec">JWST/NIRSpec</span></td>
+										<td>Gonzalez Picos et al. in prep.</td>
+										<td>T dwarf; dataset from Ruffio et al. 2023</td>
+									</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								</tbody>
+							</table>
+						</div>
+						
+						<div style="text-align: center; margin: 2rem 0;">
+							<a href="isotope_ratios_viewer.html" class="csv-button" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: transform 0.2s ease; margin-right: 1rem;">📊 View Raw CSV Data</a>
+							<button id="submitMeasurementBtn" class="csv-button" style="background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: none; transition: transform 0.2s ease; border: none; cursor: pointer;">➕ Submit New Measurement</button>
+						</div>
+						
+						<div style="margin-top: 2rem; padding: 1rem; background-color: #31383e; border-radius: 8px;">
+							<p><strong>Notes:</strong></p>
+							<ul style="margin: 0.5rem 0;">
+								<li>Uncertainties are shown as superscript/subscript when asymmetric, otherwise as ± for symmetric errors</li>
+								<li>Dashes (—) indicate no measurement reported or detection below significance threshold</li>
+								<li>Detection significance levels are noted in parentheses where applicable</li>
+								<li>DOI links provide direct access to the original publications</li>
+							</ul>
+							<p style="margin-top: 1rem; font-style: italic; color: #bdc3c7;">
+								<strong>Missing measurements?</strong> If you have isotopic ratio measurements that should be included in this compilation, please contact me at <a href="mailto:picos@strw.leidenuniv.nl" style="color: #3498db;">picos@strw.leidenuniv.nl</a>.
+							</p>
+						</div>
+						
+						<div id="serverStatus" style="text-align: center; margin: 1rem 0;">
+							<div id="statusIndicator" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #f39c12; margin-right: 6px;"></div>
+						</div>
+						
+					</div>
+				</section>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Darío González Picos. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+
+		<!-- Submit Measurement Modal -->
+		<div id="submitModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow-y: auto;">
+			<div class="modal-content" style="background-color: #2c3e50; margin: 2% auto; padding: 2rem; border-radius: 10px; width: 95%; max-width: 700px; color: white; position: relative; max-height: 90vh; overflow-y: auto;">
+				<span class="close" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; position: absolute; top: 15px; right: 20px; z-index: 1001;">&times;</span>
+				
+				<h2 style="margin-top: 0; color: #3498db;">Submit a New Measurement</h2>
+				<p style="color: #bdc3c7; margin-bottom: 2rem;">Help expand our database by submitting isotopic ratio measurements. All fields except Target Name, Carbon Isotope Ratio, and Reference are optional.</p>
+				
+				<form id="measurementForm" style="display: flex; flex-direction: column; gap: 1rem;">
+					<div class="form-group">
+						<label for="targetName" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Target Name *</label>
+						<input type="text" id="targetName" name="targetName" required style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+					</div>
+					
+					<div class="form-group">
+						<label for="category" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Category</label>
+						<select id="category" name="category" onchange="toggleCustomInput('category')" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							<option value="">Select category...</option>
+							<option value="Super-Jupiter">Super-Jupiter</option>
+							<option value="Young Brown Dwarf">Young Brown Dwarf</option>
+							<option value="Brown Dwarf">Brown Dwarf</option>
+							<option value="Star">Star</option>
+							<option value="custom">Other (specify below)</option>
+						</select>
+						<input type="text" id="categoryCustom" name="categoryCustom" placeholder="Enter custom category..." style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px; margin-top: 0.5rem; display: none;">
+					</div>
+					
+					<div class="form-group">
+						<label for="carbonValue" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">¹²C/¹³C Ratio Value *</label>
+						<input type="number" id="carbonValue" name="carbonValue" required placeholder="e.g., 88" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;" onchange="toggleUncertaintyFields('carbon')">
+					</div>
+					
+					<div id="carbonUncertaintyGroup" style="display: none;">
+						<div style="display: flex; gap: 10px; margin-bottom: 10px;">
+							<div style="flex: 1;">
+								<label for="carbonUncertaintyLower" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Lower Error</label>
+								<input type="number" id="carbonUncertaintyLower" name="carbonUncertaintyLower" placeholder="e.g., 13" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							</div>
+							<div style="flex: 1;">
+								<label for="carbonUncertaintyUpper" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Upper Error</label>
+								<input type="number" id="carbonUncertaintyUpper" name="carbonUncertaintyUpper" placeholder="e.g., 13" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							</div>
+						</div>
+						<div style="font-size: 0.9em; color: #bdc3c7; margin-bottom: 10px;">
+							Leave both fields empty for no uncertainty, or fill only the lower error for symmetric uncertainty.
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="oxygenValue" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">¹⁶O/¹⁸O Ratio Value</label>
+						<input type="number" id="oxygenValue" name="oxygenValue" placeholder="e.g., 683" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;" onchange="toggleUncertaintyFields('oxygen')">
+					</div>
+					
+					<div id="oxygenUncertaintyGroup" style="display: none;">
+						<div style="display: flex; gap: 10px; margin-bottom: 10px;">
+							<div style="flex: 1;">
+								<label for="oxygenUncertaintyLower" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Lower Error</label>
+								<input type="number" id="oxygenUncertaintyLower" name="oxygenUncertaintyLower" placeholder="e.g., 53" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							</div>
+							<div style="flex: 1;">
+								<label for="oxygenUncertaintyUpper" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Upper Error</label>
+								<input type="number" id="oxygenUncertaintyUpper" name="oxygenUncertaintyUpper" placeholder="e.g., 53" step="0.1" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							</div>
+						</div>
+						<div style="font-size: 0.9em; color: #bdc3c7; margin-bottom: 10px;">
+							Leave both fields empty for no uncertainty, or fill only the lower error for symmetric uncertainty.
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="instrument" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Instrument</label>
+						<select id="instrument" name="instrument" onchange="toggleCustomInput('instrument')" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+							<option value="">Select instrument...</option>
+							<option value="VLT/CRIRES+">VLT/CRIRES+</option>
+							<option value="Keck/NIRSPEC">Keck/NIRSPEC</option>
+							<option value="Keck/KPIC">Keck/KPIC</option>
+							<option value="JWST/NIRSpec">JWST/NIRSpec</option>
+							<option value="custom">Other (specify below)</option>
+						</select>
+						<input type="text" id="instrumentCustom" name="instrumentCustom" placeholder="Enter custom instrument..." style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px; margin-top: 0.5rem; display: none;">
+					</div>
+					
+					<div class="form-group">
+						<label for="reference" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Reference *</label>
+						<input type="text" id="reference" name="reference" required placeholder="e.g., Author et al. 2024" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+					</div>
+					
+					<div class="form-group">
+						<label for="doi" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">DOI (optional)</label>
+						<input type="text" id="doi" name="doi" placeholder="e.g., 10.1051/0004-6361/202451936" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+						<div style="font-size: 0.85em; color: #bdc3c7; margin-top: 0.3rem;">
+							Enter just the DOI number (e.g., 10.1051/0004-6361/202451936) without the full URL
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="notes" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Notes</label>
+						<textarea id="notes" name="notes" rows="3" placeholder="Additional notes or comments..." style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px; resize: vertical;"></textarea>
+					</div>
+					
+					<div class="form-group">
+						<label for="submitterEmail" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #ecf0f1;">Your Email (for follow-up)</label>
+						<input type="email" id="submitterEmail" name="submitterEmail" placeholder="your.email@example.com" style="width: 100%; padding: 10px; border: 1px solid #34495e; border-radius: 5px; background-color: #34495e; color: white; font-size: 14px;">
+					</div>
+					
+					<div style="display: flex; gap: 1rem; margin-top: 1rem;">
+						<button type="submit" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px;">📧 Submit Measurement</button>
+						<button type="button" id="cancelBtn" style="flex: 1; padding: 12px; background: #95a5a6; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px;">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			
+			<script>
+			// Modal functionality
+			const modal = document.getElementById('submitModal');
+			const submitBtn = document.getElementById('submitMeasurementBtn');
+			const closeBtn = document.querySelector('.close');
+			const cancelBtn = document.getElementById('cancelBtn');
+			const form = document.getElementById('measurementForm');
+			
+			// Server status elements
+			const statusIndicator = document.getElementById('statusIndicator');
+			const serverStatus = document.getElementById('serverStatus');
+			
+				// Check server status
+				async function checkServerStatus() {
+					try {
+						// Try current domain first, then localhost fallback
+						const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+							? 'http://localhost:5000/api/submissions'
+							: `${window.location.protocol}//${window.location.hostname}:5000/api/submissions`;
+					
+					const controller = new AbortController();
+					const timeoutId = setTimeout(() => controller.abort(), 5000);
+					
+					const response = await fetch(apiUrl, {
+						method: 'GET',
+						signal: controller.signal
+					});
+					
+					clearTimeout(timeoutId);
+					
+					if (response.ok) {
+						// Server is running - show submit button
+						statusIndicator.style.backgroundColor = '#27ae60';
+						submitBtn.style.display = 'inline-block';
+					} else {
+						throw new Error(`Server responded with status: ${response.status}`);
+					}
+				} catch (error) {
+					// Server is not running - hide submit button
+					statusIndicator.style.backgroundColor = '#e74c3c';
+					submitBtn.style.display = 'none';
+				}
+			}
+			
+			// Check server status on page load
+			checkServerStatus();
+
+			// Open modal
+			submitBtn.onclick = function() {
+				modal.style.display = 'block';
+				document.body.style.overflow = 'hidden'; // Prevent background scrolling
+			}
+
+			// Close modal functions
+			function closeModal() {
+				modal.style.display = 'none';
+				document.body.style.overflow = 'auto'; // Restore scrolling
+				form.reset(); // Clear form
+				
+				// Hide custom inputs
+				document.getElementById('categoryCustom').style.display = 'none';
+				document.getElementById('instrumentCustom').style.display = 'none';
+				
+				// Hide uncertainty groups
+				document.getElementById('carbonUncertaintyGroup').style.display = 'none';
+				document.getElementById('oxygenUncertaintyGroup').style.display = 'none';
+			}
+
+			closeBtn.onclick = closeModal;
+			cancelBtn.onclick = closeModal;
+
+			// Close modal when clicking outside
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					closeModal();
+				}
+			}
+
+			// Toggle custom input fields
+			function toggleCustomInput(fieldType) {
+				const select = document.getElementById(fieldType);
+				const customInput = document.getElementById(fieldType + 'Custom');
+				
+				if (select.value === 'custom') {
+					customInput.style.display = 'block';
+					customInput.required = true;
+				} else {
+					customInput.style.display = 'none';
+					customInput.required = false;
+					customInput.value = '';
+				}
+			}
+			
+			// Toggle uncertainty fields
+			function toggleUncertaintyFields(ratioType) {
+				const valueField = document.getElementById(ratioType + 'Value');
+				const uncertaintyGroup = document.getElementById(ratioType + 'UncertaintyGroup');
+				
+				if (valueField.value && valueField.value.trim() !== '') {
+					uncertaintyGroup.style.display = 'block';
+				} else {
+					uncertaintyGroup.style.display = 'none';
+					// Clear uncertainty fields when hiding
+					document.getElementById(ratioType + 'UncertaintyLower').value = '';
+					document.getElementById(ratioType + 'UncertaintyUpper').value = '';
+				}
+			}
+			
+			// Helper function to format ratio with uncertainties
+			function formatRatio(value, lowerError, upperError) {
+				if (!value || value.trim() === '') return '';
+				
+				const val = parseFloat(value);
+				if (isNaN(val)) return value;
+				
+				if (!lowerError && !upperError) {
+					return val.toString();
+				}
+				
+				const lower = lowerError ? parseFloat(lowerError) : null;
+				const upper = upperError ? parseFloat(upperError) : null;
+				
+				if (lower !== null && upper !== null) {
+					// Asymmetric uncertainty
+					return `${val}⁺${upper}₋${lower}`;
+				} else if (lower !== null) {
+					// Symmetric uncertainty
+					return `${val} ± ${lower}`;
+				} else if (upper !== null) {
+					// Only upper error (treat as symmetric)
+					return `${val} ± ${upper}`;
+				}
+				
+				return val.toString();
+			}
+			
+			// Form submission
+			form.addEventListener('submit', async function(e) {
+				e.preventDefault();
+				
+				// Get form data
+				const formData = new FormData(form);
+				let data = Object.fromEntries(formData.entries());
+				
+				// Handle custom inputs
+				if (data.category === 'custom') {
+					if (!data.categoryCustom) {
+						alert('Please enter a custom category.');
+						return;
+					}
+					data.category = data.categoryCustom;
+				}
+				
+				if (data.instrument === 'custom') {
+					if (!data.instrumentCustom) {
+						alert('Please enter a custom instrument.');
+						return;
+					}
+					data.instrument = data.instrumentCustom;
+				}
+				
+				// Format carbon ratio
+				data.carbonRatio = formatRatio(
+					data.carbonValue,
+					data.carbonUncertaintyLower,
+					data.carbonUncertaintyUpper
+				);
+				
+				// Format oxygen ratio
+				data.oxygenRatio = formatRatio(
+					data.oxygenValue,
+					data.oxygenUncertaintyLower,
+					data.oxygenUncertaintyUpper
+				);
+				
+				// Remove fields we don't need to send
+				delete data.categoryCustom;
+				delete data.instrumentCustom;
+				delete data.carbonValue;
+				delete data.carbonUncertaintyLower;
+				delete data.carbonUncertaintyUpper;
+				delete data.oxygenValue;
+				delete data.oxygenUncertaintyLower;
+				delete data.oxygenUncertaintyUpper;
+				
+				// Validate required fields
+				if (!data.targetName || !data.carbonRatio || !data.reference) {
+					alert('Please fill in all required fields (Target Name, Carbon Isotope Ratio Value, and Reference).');
+					return;
+				}
+				
+				// Show loading state
+				const submitBtn = form.querySelector('button[type="submit"]');
+				const originalText = submitBtn.textContent;
+				submitBtn.textContent = 'Submitting...';
+				submitBtn.disabled = true;
+				
+				try {
+					// Try to submit to backend first
+					// Use same API URL logic as status check
+					const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+						? 'http://localhost:5000/api/submit'
+						: `${window.location.protocol}//${window.location.hostname}:5000/api/submit`;
+					
+					const response = await fetch(apiUrl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data)
+					});
+					
+					// Check if response is ok
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					
+					// Get response text first to check if it's JSON
+					const responseText = await response.text();
+					let result;
+					
+					try {
+						result = JSON.parse(responseText);
+					} catch (parseError) {
+						console.error('Response is not valid JSON:', responseText);
+						throw new Error('Server returned invalid response. Falling back to email submission.');
+					}
+					
+					if (result.success) {
+						// Show success message
+						alert('Thank you for your submission! Your measurement has been submitted successfully and will be reviewed before being added to the database.');
+						
+						// Close modal
+						closeModal();
+						return;
+					} else {
+						// Show error message
+						alert('Error submitting measurement: ' + (result.error || 'Unknown error'));
+						return;
+					}
+				} catch (error) {
+					// Backend not available, fall back to email submission
+					console.warn('Backend not available, falling back to email submission:', error.message);
+					
+					// Create email content
+					const emailSubject = 'New Isotope Ratio Measurement Submission';
+					const emailBody = `
+New measurement submission for the isotope ratios database:
+
+Target Name: ${data.targetName}
+Category: ${data.category || 'Not specified'}
+Carbon Isotope Ratio (¹²C/¹³C): ${data.carbonRatio}
+Oxygen Isotope Ratio (¹⁶O/¹⁸O): ${data.oxygenRatio || 'Not provided'}
+Instrument: ${data.instrument || 'Not specified'}
+Reference: ${data.reference}
+DOI: ${data.doi || 'Not provided'}
+Notes: ${data.notes || 'None'}
+Submitter Email: ${data.submitterEmail || 'Not provided'}
+
+Submitted on: ${new Date().toLocaleString()}
+
+Note: This submission was sent via email because the backend server is not currently running.
+To enable direct database submission, please start the backend server using: python start_server.py
+					`.trim();
+					
+					// Create mailto link
+					const mailtoLink = `mailto:picos@strw.leidenuniv.nl?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+					
+					// Open email client
+					window.location.href = mailtoLink;
+					
+					// Show success message
+					alert('Backend server not available. Your email client should open with a pre-filled message. Please send the email to complete the submission process.\n\nTo enable direct database submission, start the backend server using: python start_server.py');
+					
+					// Close modal
+					closeModal();
+				} finally {
+					// Reset button state
+					submitBtn.textContent = originalText;
+					submitBtn.disabled = false;
+				}
+			});
+
+			</script>
+
+	</body>
+</html>

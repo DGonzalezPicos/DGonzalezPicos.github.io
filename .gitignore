@@ -1,0 +1,19 @@
+# Server configuration and data
+server_config.json
+data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+*.log
+*.sh
+# OS
+.DS_Store
+Thumbs.db
+
+# Data
+data/
+*.png
