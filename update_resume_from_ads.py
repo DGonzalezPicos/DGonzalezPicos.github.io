@@ -92,7 +92,6 @@ def fetch_stats(token: str) -> dict:
 
 
 def update_summary_line(tex: str, stats: dict) -> str:
-    footnote = r"\footnote{Publication data collected from NASA Astrophysics Data System}"
     lines = tex.splitlines()
     updated = False
     cleaned: list[str] = []
@@ -101,8 +100,8 @@ def update_summary_line(tex: str, stats: dict) -> str:
             if updated:
                 continue
             line = (
-                f"As of {stats['date']},{footnote} "
-                f"part of {stats['refereed_papers']} refereed papers with {stats['total_citations']} total citations; "
+                f"As of {stats['date']}, part of {stats['refereed_papers']} refereed papers with "
+                f"{stats['total_citations']} total citations; "
                 r"a complete listing can be found in my \href{https://ui.adsabs.harvard.edu/search/p_=0&q=author%3A%22Gonz%C3%A1lez%20Picos%2C%20D.%3B%20Picos%2C%20Dar%C3%ADo%20Gonz%C3%A1lez%22&sort=date%20desc%2C%20bibcode%20desc}{ADS} or "
                 r"\href{https://orcid.org/0000-0001-9282-9462}{ORCID}."
             )
