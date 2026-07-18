@@ -1,25 +1,17 @@
-# Darío González Picos — Personal Website
+# Darío González Picos — personal website
 
-Static personal site hosted from this directory.
+Live site is the built Jekyll output. Source lives in `academic-website-template/`.
+Old Hyperspace site is preserved in `backup_hyperspace_2026-07-18/`.
 
-## Local preview
+## Preview / deploy
 
-```bash
-python3 -m http.server 8008
-```
-
-Then open `http://localhost:8008`.
-
-## CV updates from ADS
+See `academic-website-template/README_SITE.md`.
 
 ```bash
-cp .env.template .env   # add ADS_API_TOKEN
-python3 update_resume_from_ads.py
+cd academic-website-template
+./deploy.sh
 ```
 
-## Main pages
+## Placeholders to revise
 
-- `index.html` — homepage
-- `isotope_ratios.html` — isotope ratio measurements table
-- `isotope_ratios_viewer.html` — raw CSV viewer
-- `assets/resume.pdf` — CV (generated from `assets/resume.tex`)
+Search the source tree for `filling text`.

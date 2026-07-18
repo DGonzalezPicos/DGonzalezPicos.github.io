@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://home.strw.leidenuniv.nl/~picos/sitemap.xml
