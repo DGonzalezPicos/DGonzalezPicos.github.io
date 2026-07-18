@@ -1,0 +1,28 @@
+# Secrets & local env
+.env
+.env.*
+!.env.template
+
+# Large / local-only trees
+academic-website-template/
+backup_hyperspace_*/
+vendor/
+.bundle/
+node_modules/
+data/
+
+# Build caches
+.jekyll-cache/
+.sass-cache/
+_site/
+**/_site/
+
+# Maps / logs
+*.css.map
+*.log
+
+# Accidental dependency dumps
+assets/javascript/popper/
+
+# OS
+.DS_Store
