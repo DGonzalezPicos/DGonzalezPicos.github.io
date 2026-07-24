@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dgonzalezpicos.github.io/sitemap.xml
+Sitemap: https://home.strw.leidenuniv.nl/~picos/sitemap.xml
