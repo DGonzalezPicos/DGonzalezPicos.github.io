@@ -3,23 +3,23 @@
   <channel>
     <title>Darío González Picos</title>
     <description>Academic webpage of Darío González Picos — exoplanet atmospheres, high-resolution spectroscopy, and isotope ratios at Leiden Observatory.</description>
-    <link>https://dgonzalezpicos.github.io/</link>
-    <atom:link href="https://dgonzalezpicos.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 24 Jul 2026 14:46:08 +0200</lastBuildDate>
+    <link>https://home.strw.leidenuniv.nl/~picos/</link>
+    <atom:link href="https://home.strw.leidenuniv.nl/~picos/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Fri, 24 Jul 2026 14:46:24 +0200</lastBuildDate>
     
     
     <item>
       <title>Rare isotopes in neighbouring stars — Nature Astronomy press release</title>
       <description>Rare isotopes in neighbouring stars — Nature Astronomy press release</description>
       <pubDate>Tue, 26 Aug 2025 00:00:00 +0200</pubDate>
-      <link>https://dgonzalezpicos.github.io/allnews.html</link>
+      <link>https://home.strw.leidenuniv.nl/~picos/allnews.html</link>
     </item>
     
     <item>
       <title>Successful observing run in Paranal with VLT/CRIRES+</title>
       <description>Successful observing run in Paranal with VLT/CRIRES+</description>
       <pubDate>Sat, 04 Mar 2023 00:00:00 +0100</pubDate>
-      <link>https://dgonzalezpicos.github.io/allnews.html</link>
+      <link>https://home.strw.leidenuniv.nl/~picos/allnews.html</link>
     </item>
     
   </channel>

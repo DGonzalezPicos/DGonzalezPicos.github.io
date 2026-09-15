@@ -9,9 +9,14 @@ See `academic-website-template/README_SITE.md`.
 
 ```bash
 cd academic-website-template
-./deploy.sh
+./deploy.sh            # Leiden (baseurl=/~picos) — always run this last
+# ./deploy-github.sh   # then commit/push, then ./deploy.sh again
 ```
 
-## Placeholders to revise
+If Publications/About return Apache 403 (“unable to read htaccess”), run:
 
-Search the source tree for `filling text`.
+```bash
+academic-website-template/fix-web-perms.sh
+```
+
+That is caused by `umask 077` making pages unreadable to Apache — not a missing `.htaccess`.
