@@ -3,19 +3,22 @@
 .env.*
 !.env.template
 
-# Large / local-only trees
+# Jekyll source + local Ruby/vendor trees (built HTML is what GitHub Pages serves)
 academic-website-template/
-backup_hyperspace_*/
 vendor/
 .bundle/
 node_modules/
 data/
 
-# Build caches
+# Old site backup — keep on disk, never push
+backup_hyperspace_*/
+
+# Build caches / intermediate output
 .jekyll-cache/
 .sass-cache/
 _site/
 **/_site/
+.jekyll-metadata
 
 # Maps / logs
 *.css.map
@@ -24,5 +27,12 @@ _site/
 # Accidental dependency dumps
 assets/javascript/popper/
 
-# OS
+# OS / editor noise
 .DS_Store
+*.swp
+*~
+
+# Do NOT ignore:
+# - *.html, assets/, images/, papers/cv.pdf  (site content for GitHub Pages)
+# - verify-github-paths.sh, fix-web-perms.sh, install-git-hooks.sh, git-hooks/
+#   (dual-host guards; academic-website-template/ is ignored so copies live at repo root)

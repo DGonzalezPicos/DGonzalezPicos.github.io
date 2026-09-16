@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Block commits that would publish Leiden (/~picos/) asset paths to GitHub Pages.
+# Installed by: academic-website-template/install-git-hooks.sh
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel)"
+CHECK="$ROOT/academic-website-template/verify-github-paths.sh"
+
+# Template may be gitignored; keep a copy of the check at repo root for hooks
+if [[ ! -x "$CHECK" ]]; then
+  CHECK="$ROOT/verify-github-paths.sh"
+fi
+
+if [[ ! -x "$CHECK" ]]; then
+  echo "pre-commit: verify-github-paths.sh missing; skip" >&2
+  exit 0
+fi
+
+# Only enforce when HTML/asset manifests are staged
+if git diff --cached --name-only | grep -qE '\.(html|xml|json)$|assets/search\.json'; then
+  "$CHECK"
+fi
