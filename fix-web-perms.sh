@@ -64,6 +64,7 @@ for f in \
   "$DEST/deploy-github.sh" \
   "$DEST/serve.sh" \
   "$DEST/local_html_site.sh" \
+  "$DEST/git-hooks/pre-commit" \
   "$DEST/academic-website-template/deploy.sh" \
   "$DEST/academic-website-template/deploy-github.sh" \
   "$DEST/academic-website-template/fix-web-perms.sh" \

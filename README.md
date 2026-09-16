@@ -9,14 +9,16 @@ See `academic-website-template/README_SITE.md`.
 
 ```bash
 cd academic-website-template
-./deploy.sh            # Leiden (baseurl=/~picos) — always run this last
-# ./deploy-github.sh   # then commit/push, then ./deploy.sh again
+./deploy-github.sh    # GitHub-shaped HTML (/assets/...) — commit/push only this
+git add -u && git commit && git push
+./deploy.sh           # Leiden (/~picos/...) + Apache perms — local only, do not commit
 ```
+
+After `./deploy.sh`, `git status` will look dirty (URL prefixes differ). That is normal.
+Do **not** commit that tree — the pre-commit hook blocks `/~picos/` paths so GitHub Pages CSS does not break.
 
 If Publications/About return Apache 403 (“unable to read htaccess”), run:
 
 ```bash
-academic-website-template/fix-web-perms.sh
+./fix-web-perms.sh
 ```
-
-That is caused by `umask 077` making pages unreadable to Apache — not a missing `.htaccess`.
