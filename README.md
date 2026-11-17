@@ -1,24 +1,38 @@
-# Darío González Picos — personal website
+# Darío González Picos — academic website
 
-Live site is the built Jekyll output. Source lives in `academic-website-template/`.
-Old Hyperspace site is preserved in `backup_hyperspace_2026-07-18/`.
+Static single-page site, dual-hosted:
 
-## Preview / deploy
+- **GitHub Pages:** https://dgonzalezpicos.github.io/
+- **Leiden:** https://home.strw.leidenuniv.nl/~picos/
 
-See `academic-website-template/README_SITE.md`.
+Asset links are **relative** (`assets/`, `images/`, `papers/`) so both hosts work without path rewriting.
+
+## Structure
+
+- `index.html` — Summary, About, Research Highlights, Publications
+- `assets/site.css` — styles (light default + dark theme toggle)
+- `images/` — portrait, logo
+- `papers/cv.pdf` — CV
+
+Local backups (gitignored):
+
+- `backup_jekyll_2026-11-17/` — previous Jekyll site
+- `backup_hyperspace_2026-07-18/` — earlier Hyperspace theme
+
+## Local preview
 
 ```bash
-cd academic-website-template
-./deploy-github.sh    # GitHub-shaped HTML (/assets/...) — commit/push only this
-git add -u && git commit && git push
-./deploy.sh           # Leiden (/~picos/...) + Apache perms — local only, do not commit
+./local_html_site.sh          # http://localhost:8008/~picos/
 ```
 
-After `./deploy.sh`, `git status` will look dirty (URL prefixes differ). That is normal.
-Do **not** commit that tree — the pre-commit hook blocks `/~picos/` paths so GitHub Pages CSS does not break.
-
-If Publications/About return Apache 403 (“unable to read htaccess”), run:
+## Publishing to GitHub Pages
 
 ```bash
-./fix-web-perms.sh
+./verify-github-paths.sh      # must pass (no /~picos/ paths)
+git add -A
+git status
+git commit -m "…"
+git push origin master
 ```
+
+Do **not** commit `.env`, `backup_*`, or `academic-website-template/`.

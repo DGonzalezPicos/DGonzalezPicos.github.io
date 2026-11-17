@@ -10,8 +10,9 @@ vendor/
 node_modules/
 data/
 
-# Old site backup — keep on disk, never push
+# Old site backups — keep on disk, never push
 backup_hyperspace_*/
+backup_jekyll_*/
 
 # Build caches / intermediate output
 .jekyll-cache/

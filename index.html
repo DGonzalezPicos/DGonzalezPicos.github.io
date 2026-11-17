@@ -1,298 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  
   <title>Darío González Picos</title>
   <meta name="description" content="Academic webpage of Darío González Picos — exoplanet atmospheres, high-resolution spectroscopy, and isotope ratios at Leiden Observatory.">
-
-  <!-- Open Graph / Social Sharing -->
   <meta property="og:title" content="Darío González Picos">
-  <meta property="og:description" content="Academic webpage of Darío González Picos — exoplanet atmospheres, high-resolution spectroscopy, and isotope ratios at Leiden Observatory.">
+  <meta property="og:description" content="PhD candidate at Leiden Observatory working on exoplanet atmospheres, high-resolution spectroscopy, and isotope ratios.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dgonzalezpicos.github.io/">
   <meta property="og:image" content="https://dgonzalezpicos.github.io/images/dario_vlt_inkscape_crop.png">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Darío González Picos">
-  <meta name="twitter:description" content="Academic webpage of Darío González Picos — exoplanet atmospheres, high-resolution spectroscopy, and isotope ratios at Leiden Observatory.">
-  <meta name="twitter:image" content="https://dgonzalezpicos.github.io/images/dario_vlt_inkscape_crop.png">
-
-  <!-- Fonts -->
+  <link rel="canonical" href="https://dgonzalezpicos.github.io/">
+  <link rel="icon" href="images/jupiter_logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;0,8..60,800;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="https://dgonzalezpicos.github.io/">
-  <link rel="icon" href="https://dgonzalezpicos.github.io/images/jupiter_logo.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="https://dgonzalezpicos.github.io/images/jupiter_logo.svg">
-  <link rel="alternate" type="application/rss+xml" title="Darío González Picos" href="https://dgonzalezpicos.github.io/feed.xml">
-
-  <!-- Accent color from config -->
-  
-  <style>
-    :root { --accent: #1a7a6d; --accent-hover: #1a7a6d; }
-  </style>
-  
-
-  <!-- Dark mode: apply saved theme before paint to prevent flash -->
+  <link rel="stylesheet" href="assets/site.css">
   <script>
-    (function() {
-      var darkMode = true;
-      if (!darkMode) return;
-      var saved = localStorage.getItem('theme');
-      if (saved) {
-        document.documentElement.setAttribute('data-bs-theme', saved);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-bs-theme', 'dark');
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = (saved === 'dark' || saved === 'light') ? saved : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
       }
     })();
   </script>
-
-  
-
-  <script>
-MathJax = {
-    tex: {
-    inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-    tags: 'ams'  // should be 'ams', 'none', or 'all' }. This line makes the equation numbering and labeling work
-    }, 
-    svg: {
-    fontCache: 'global'
-    }
-};
-</script>
-<script
-    type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script> 
-
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Home",
-    "url": "https://dgonzalezpicos.github.io/",
-    "description": "Academic webpage of Darío González Picos — exoplanet atmospheres, high-resolution spectroscopy, and isotope ratios at Leiden Observatory.",
-    "author": {
-      "@type": "Person",
-      "name": "Darío González Picos",
-      "jobTitle": "PhD candidate in exoplanet atmospheres",
-      "affiliation": {
-        "@type": "Organization",
-        "name": "Leiden Observatory"
-      }
-    }
-  }
-  </script>
 </head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-
-  <body>
-
-    <nav class="navbar sticky-top navbar-expand-md">
-  <div class="container" style="max-width: var(--container-max);">
-    <a class="navbar-brand" href="https://dgonzalezpicos.github.io/" aria-label="Home">
-      <img src="https://dgonzalezpicos.github.io/images/jupiter_logo.svg" width="28" height="28" class="d-inline-block align-text-top" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="https://dgonzalezpicos.github.io/">Home</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="https://dgonzalezpicos.github.io/about">About</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="https://dgonzalezpicos.github.io/publications">Publications</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="https://dgonzalezpicos.github.io/research">Research</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="https://dgonzalezpicos.github.io/isotope_ratios">Isotopes</a>
-        </li>
-        
-      </ul>
-      <div class="d-flex align-items-center" style="gap: var(--space-2);">
-        <button class="search-toggle" id="searchToggle" aria-label="Search site">
-          <i class="fa-solid fa-magnifying-glass"></i>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="wrap">
+      <a class="brand" href="#summary">
+        <img src="images/jupiter_logo.svg" alt="" width="28" height="28">
+        <span>Darío González Picos</span>
+      </a>
+      <div class="nav-end">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="#summary">Summary</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research Highlights</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="papers/cv.pdf">CV</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark theme" title="Toggle theme">
+          <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
+          <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
         </button>
-        
-        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
-          <i class="fa-solid fa-sun" id="themeIcon"></i>
-        </button>
-        
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- Search overlay -->
-<div class="search-overlay" id="searchOverlay">
-<div class="search-modal">
-<div class="search-input-wrapper">
-<i class="fa-solid fa-magnifying-glass search-input-icon"></i>
-<input type="text" class="search-input" id="searchInput" placeholder="Search pages..." autocomplete="off">
-<kbd class="search-kbd">ESC</kbd>
-</div>
-<div class="search-results" id="searchResults"></div>
-</div>
-</div>
+  <main id="main">
+    <section class="section" id="summary">
+      <div class="wrap">
+        <h1>Darío González Picos</h1>
+        <p class="role-line">PhD candidate in exoplanet atmospheres · <a href="https://local.strw.leidenuniv.nl/">Leiden Observatory</a></p>
 
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="lead">Hi, I’m Darío — I use high-resolution spectroscopy to measure the composition and isotope ratios of exoplanets, brown dwarfs, and cool stars, tracing how giant planets form and how the Galaxy enriches carbon and oxygen.</p>
+            <p>I work in the group of <a href="https://home.strw.leidenuniv.nl/~snellen/">Prof. Ignas Snellen</a> at Leiden Observatory (2023–2027). My PhD focuses on the ESO SupJup Survey, JWST/NIRSpec atmospheres, and M-dwarf compositional studies.</p>
+            <p>If you’re interested in collaborations, feel free to browse my <a href="papers/cv.pdf">CV</a> or <a href="mailto:picos@strw.leidenuniv.nl">email me</a>.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="mailto:picos@strw.leidenuniv.nl"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email</a>
+              <a class="btn" href="papers/cv.pdf"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> CV</a>
+              <a class="btn" href="https://scixplorer.org/search?q=author%3A%22Gonz%C3%A1lez%20Picos%2C%20D%22&amp;sort=date%20desc" target="_blank" rel="noopener noreferrer">Publications (SciX)</a>
+              <a class="btn" href="https://orcid.org/0000-0001-9282-9462" target="_blank" rel="noopener noreferrer">ORCID</a>
+            </div>
+          </div>
 
-    <main class="site-container">
-      <div class="home-grid">
-  <div class="home-content">
-    <h2 class="home-hero">Darío González Picos</h2>
-<p class="home-hero-sub">PhD candidate in exoplanet atmospheres, Leiden Observatory</p>
+          <aside class="profile-panel" aria-label="Profile">
+            <img class="profile-photo" src="images/dario_vlt_inkscape_crop.png" alt="Portrait of Darío González Picos" width="480" height="500">
 
-<div class="chip-container">
-<a href="https://dgonzalezpicos.github.io/research/exoplanet-atmospheres/" class="chip">Exoplanet Atmospheres</a>
-<a href="https://dgonzalezpicos.github.io/research/m-dwarfs/" class="chip">M Dwarfs</a>
-<a href="https://dgonzalezpicos.github.io/research/high-resolution-spectroscopy/" class="chip">High-Resolution Spectroscopy</a>
-<a href="https://dgonzalezpicos.github.io/research/isotope-ratios/" class="chip">Isotope Ratios</a>
-</div>
+            <div class="icon-links" aria-label="Links">
+              <a href="mailto:picos@strw.leidenuniv.nl" title="Email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+              <a href="papers/cv.pdf" title="CV" aria-label="CV"><i class="fa-solid fa-file-lines"></i></a>
+              <a href="https://github.com/DGonzalezPicos" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+              <a href="https://orcid.org/0000-0001-9282-9462" title="ORCID" aria-label="ORCID" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-orcid"></i></a>
+              <a href="https://scixplorer.org/search?q=author%3A%22Gonz%C3%A1lez%20Picos%2C%20D%22&amp;sort=date%20desc" title="SciX" aria-label="SciX publications" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-book-open"></i></a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-<p>I am working on high-resolution spectroscopy in the group of
-<a href="https://home.strw.leidenuniv.nl/~snellen/">Prof. Snellen</a>
-at <a href="https://local.strw.leidenuniv.nl/">Leiden Observatory</a>.</p>
+    <section class="section" id="about">
+      <div class="wrap">
+        <h2>About me</h2>
+        <div class="prose">
+          <p>My research focuses on high-resolution spectroscopy and atmospheric retrievals. I study the atmospheric composition of giant planets to understand their formation and evolution. I build tools for ground-based instruments like <a href="https://www.eso.org/sci/facilities/develop/instruments/crires_up.html" target="_blank" rel="noopener noreferrer">VLT/CRIRES+</a> to analyze observations of directly-imaged planets and brown dwarfs. I also use JWST/NIRSpec for atmospheric characterization. I am also interested in retrievals of M dwarf composition and their role as chemical tracers.</p>
+          <p>During my PhD I have contributed carbon-isotope measurements for imaged companions such as β&nbsp;Pic&nbsp;b and GQ&nbsp;Lup&nbsp;B, developed JWST high-contrast spectroscopy methods that account for residual speckles, and measured rare C and O isotopes across a sample of nearby M dwarfs.</p>
+          <p>Before Leiden I worked as a student support astronomer at the Isaac Newton Group of Telescopes on La Palma (2020–2021), and I continue to teach as a student teaching assistant at Leiden University.</p>
+          <p><strong>Contact:</strong> <a href="mailto:picos@strw.leidenuniv.nl">picos@strw.leidenuniv.nl</a><br>
+          Einsteinweg 55, 2333 CC Leiden · Room BW4.12 · The Netherlands</p>
+        </div>
+      </div>
+    </section>
 
-<div class="callout callout-success">
-<div class="callout-title"><i class="fa-solid fa-flask callout-icon"></i> Research focus</div>
-<p>High-resolution spectroscopy of exoplanets, brown dwarfs, and cool stars — composition, thermal structure, and isotope ratios as tracers of formation and chemical evolution.</p>
-</div>
+    <section class="section" id="research">
+      <div class="wrap">
+        <h2>Research highlights</h2>
 
-<h3 id="about-me">About me</h3>
+        <article class="highlight">
+          <h3>Carbon isotopes in β Pic b</h3>
+          <p>With eleven nights of VLT/CRIRES+ <em>K</em>-band spectroscopy we measure <sup>12</sup>C/<sup>13</sup>C = 58<sup>+18</sup><sub>−15</sub> in the atmosphere of the young super-Jupiter β&nbsp;Pic&nbsp;b, together with near-solar metallicity and C/O. The ratio is consistent with the local ISM rather than extreme ice enrichment, placing a classic imaged planet on a firmer isotopic footing.
+          (<a href="https://doi.org/10.1051/0004-6361/202660276">DOI</a> · <a href="https://scixplorer.org/abs/2026A&amp;A...711A..87G">SciX</a>)</p>
+        </article>
 
-<p>I am a PhD candidate at Leiden Observatory (2023–2027), interested in observational astronomy and exoplanet science. I enjoy developing tools for data reduction and analysis of high-resolution spectroscopy data. During my PhD, I have contributed to the ESO SupJup survey to disentangle the formation pathways of giant planets and brown dwarfs through isotopic ratios. I am also experienced in data reduction and analysis of JWST/NIRSpec observations of brown dwarfs. During my PhD, I have also extended our modelling efforts to fit the high-resolution spectra of M-dwarfs. Currently, I am working on both directly-imaged planets and M-dwarfs to push forward the understanding of their atmospheres and formation pathways.</p>
+        <article class="highlight">
+          <h3>Rare isotopes in nearby M dwarfs</h3>
+          <p>Analysing SPIRou spectra of 32 nearby M dwarfs, we find that more metal-rich stars have lower <sup>12</sup>C/<sup>13</sup>C, tracking progressive <sup>13</sup>C enrichment of the interstellar medium. This Galactic baseline is essential for interpreting planetary isotope ratios as formation tracers.
+          (<a href="https://doi.org/10.1038/s41550-025-02641-4">DOI</a> · <a href="https://scixplorer.org/abs/2025NatAs...9.1692G">SciX</a>)</p>
+        </article>
 
-  </div>
+        <article class="highlight">
+          <h3>TRAPPIST-1 elemental and isotopic abundances</h3>
+          <p>Joint Keck/NIRSPEC <em>M</em>-band and CFHT/SPIRou <em>K</em>-band spectroscopy yields the first stellar C/O and carbon- and oxygen-isotope ratios for the planet-host star TRAPPIST-1: solar-like metallicity and C/O, with <sup>12</sup>C/<sup>13</sup>C = 154<sup>+17</sup><sub>−16</sub> and <sup>16</sup>O/<sup>18</sup>O = 490<sup>+78</sup><sub>−64</sub> — a benchmark for future atmospheric studies of its planets.
+          (<a href="https://doi.org/10.3847/1538-4357/ae9bbc">DOI</a> · <a href="https://scixplorer.org/abs/2026ApJ..1010...22G">SciX</a>)</p>
+        </article>
 
-  <div>
-    <div class="profile-card">
-<a href="https://dgonzalezpicos.github.io/about">
-<img src="https://dgonzalezpicos.github.io/images/dario_vlt_inkscape_crop.png" class="profile-photo" alt="Darío González Picos" loading="lazy">
-</a>
+        <article class="highlight">
+          <h3>SupJup companions and host–companion chemistry</h3>
+          <p>In the ESO SupJup Survey we measure <sup>12</sup>C/<sup>13</sup>C for young brown dwarfs and the GQ&nbsp;Lup system. GQ&nbsp;Lup&nbsp;B and its K7 host share indistinguishable carbon isotope ratios, favouring a shared natal reservoir over a chemically distinct pathway.
+          (<a href="https://doi.org/10.1051/0004-6361/202451936">SupJup IV</a> · <a href="https://doi.org/10.1051/0004-6361/202450028">SupJup II</a>)</p>
+        </article>
 
-<div class="profile-id-logos">
+        <article class="highlight">
+          <h3>JWST atmospheres with honest systematics</h3>
+          <p>Young brown dwarfs often show disc and atmospheric signatures mixed in the same JWST/NIRSpec spectrum; joint models are required to recover reliable isotope constraints. For the close-in T dwarf HD&nbsp;19467&nbsp;B, residual speckles can masquerade as chemistry unless they are modelled together with the atmosphere.
+          (<a href="https://doi.org/10.1051/0004-6361/202555669">DOI</a> · <a href="https://doi.org/10.1051/0004-6361/202659296">HD 19467 B</a>)</p>
+        </article>
+      </div>
+    </section>
 
-  <a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Gonz%C3%A1lez%20Picos%2C%20D.%3B%20Picos%2C%20Dar%C3%ADo%20Gonz%C3%A1lez%22&sort=date%20desc%2C%20bibcode%20desc" class="id-logo-link" title="NASA ADS publications" target="_blank" rel="noopener noreferrer">
-    <img src="https://dgonzalezpicos.github.io/images/ads_logo.svg" class="id-logo id-logo-ads" alt="NASA ADS">
-  </a>
+    <section class="section" id="publications">
+      <div class="wrap">
+        <h2>First-author publications</h2>
+        <p class="lead">Peer-reviewed first-author articles. Citation counts from NASA ADS / SciX. Co-authored papers are on my <a href="https://scixplorer.org/search?q=author%3A%22Gonz%C3%A1lez%20Picos%2C%20D%22&amp;sort=date%20desc" target="_blank" rel="noopener noreferrer">SciX library</a>.</p>
 
+        <ul class="pub-list">
+          <li class="pub-item">
+            <h3 class="pub-title">The Isotopic and Elemental Abundances of Planet-host-star TRAPPIST-1</h3>
+            <p class="pub-meta">González Picos, Darío et al., ApJ 1010, 22 (2026)</p>
+            <span class="pub-cite">0 citations</span>
+            <div class="pub-links">
+              <a class="chip" href="https://scixplorer.org/abs/2026ApJ..1010...22G" target="_blank" rel="noopener noreferrer">SciX</a>
+              <a class="chip chip-doi" href="https://doi.org/10.3847/1538-4357/ae9bbc" target="_blank" rel="noopener noreferrer">DOI</a>
+              <a class="chip" href="https://arxiv.org/abs/2608.26097" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </li>
+          <li class="pub-item">
+            <h3 class="pub-title">The carbon isotope ratio of β Pic b with high-resolution spectroscopy</h3>
+            <p class="pub-meta">González Picos, D. et al., A&amp;A 711, A87 (2026)</p>
+            <span class="pub-cite">4 citations</span>
+            <div class="pub-links">
+              <a class="chip" href="https://scixplorer.org/abs/2026A&amp;A...711A..87G" target="_blank" rel="noopener noreferrer">SciX</a>
+              <a class="chip chip-doi" href="https://doi.org/10.1051/0004-6361/202660276" target="_blank" rel="noopener noreferrer">DOI</a>
+              <a class="chip" href="https://arxiv.org/abs/2606.12401" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </li>
+          <li class="pub-item">
+            <h3 class="pub-title">JWST high-contrast spectroscopy with speckle modelling: Atmospheric retrievals of the T-dwarf companion HD 19467 B</h3>
+            <p class="pub-meta">González Picos, D. et al., A&amp;A 710, A293 (2026)</p>
+            <span class="pub-cite">1 citation</span>
+            <div class="pub-links">
+              <a class="chip" href="https://scixplorer.org/abs/2026A&amp;A...710A.293G" target="_blank" rel="noopener noreferrer">SciX</a>
+              <a class="chip chip-doi" href="https://doi.org/10.1051/0004-6361/202659296" target="_blank" rel="noopener noreferrer">DOI</a>
+              <a class="chip" href="https://arxiv.org/abs/2605.02769" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </li>
+          <li class="pub-item">
+            <h3 class="pub-title">Chemical evolution imprints in the rare isotopes of nearby M dwarfs</h3>
+            <p class="pub-meta">González Picos, Darío; Snellen, Ignas; de Regt, Sam, Nat. Astron. 9, 1692 (2025)</p>
+            <span class="pub-cite">10 citations</span>
+            <div class="pub-links">
+              <a class="chip" href="https://scixplorer.org/abs/2025NatAs...9.1692G" target="_blank" rel="noopener noreferrer">SciX</a>
+              <a class="chip chip-doi" href="https://doi.org/10.1038/s41550-025-02641-4" target="_blank" rel="noopener noreferrer">DOI</a>
+              <a class="chip" href="https://arxiv.org/abs/2508.18424" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </li>
+          <li class="pub-item">
+            <h3 class="pub-title">Disentangling disc and atmospheric signatures of young brown dwarfs with JWST/NIRSpec</h3>
+            <p class="pub-meta">González Picos, D. et al., A&amp;A 703, A65 (2025)</p>
+            <span class="pub-cite">4 citations</span>
+            <div class="pub-links">
+              <a class="chip" href="https://scixplorer.org/abs/2025A&amp;A...703A..65G" target="_blank" rel="noopener noreferrer">SciX</a>
+              <a class="chip chip-doi" href="https://doi.org/10.1051/0004-6361/202555669" target="_blank" rel="noopener noreferrer">DOI</a>
+              <a class="chip" href="https://arxiv.org/abs/2509.11694" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </li>
+          <li class="pub-item">
+            <h3 class="pub-title">The ESO SupJup Survey: IV. Unveiling the carbon isotope ratio of GQ Lup B and its host star</h3>
+            <p class="pub-meta">González Picos, D. et al., A&amp;A 693, A298 (2025)</p>
+            <span class="pub-cite">23 citations</span>
+            <div class="pub-links">
+              <a class="chip" href="https://scixplorer.org/abs/2025A&amp;A...693A.298G" target="_blank" rel="noopener noreferrer">SciX</a>
+              <a class="chip chip-doi" href="https://doi.org/10.1051/0004-6361/202451936" target="_blank" rel="noopener noreferrer">DOI</a>
+              <a class="chip" href="https://arxiv.org/abs/2501.01789" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </li>
+          <li class="pub-item">
+            <h3 class="pub-title">The ESO SupJup Survey: II. The <sup>12</sup>C/<sup>13</sup>C isotope ratios of three young brown dwarfs with CRIRES<sup>+</sup></h3>
+            <p class="pub-meta">González Picos, D. et al., A&amp;A 689, A212 (2024)</p>
+            <span class="pub-cite">29 citations</span>
+            <div class="pub-links">
+              <a class="chip" href="https://scixplorer.org/abs/2024A&amp;A...689A.212G" target="_blank" rel="noopener noreferrer">SciX</a>
+              <a class="chip chip-doi" href="https://doi.org/10.1051/0004-6361/202450028" target="_blank" rel="noopener noreferrer">DOI</a>
+              <a class="chip" href="https://arxiv.org/abs/2407.07678" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </li>
+        </ul>
+        <p class="pub-note">Citations retrieved from ADS on 17 Nov 2026.</p>
+      </div>
+    </section>
+  </main>
 
-  <a href="https://orcid.org/0000-0001-9282-9462" class="id-logo-link" title="ORCID 0000-0001-9282-9462" target="_blank" rel="noopener noreferrer">
-    <img src="https://dgonzalezpicos.github.io/images/ORCID_iD.svg" class="id-logo id-logo-orcid" alt="ORCID">
-  </a>
-
-</div>
-
-<h4 class="profile-name">Darío González Picos</h4>
-<p class="profile-title">PhD candidate in exoplanet atmospheres</p>
-<p class="profile-institution">Leiden Observatory</p>
-<div class="profile-links">
-<a href="mailto:picos@strw.leidenuniv.nl" class="icon-link" title="Email"><i class="fa-solid fa-envelope"></i></a>
-<a href="https://dgonzalezpicos.github.io/papers/cv.pdf" class="icon-link" title="CV"><i class="ai ai-cv"></i></a>
-<a href="https://github.com/DGonzalezPicos" class="icon-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
-
-
-</div>
-
-<ul style="text-align: left; margin-top: var(--space-4); list-style: none; padding-left: 0;">
-
-<li style="font-size: 0.875rem; color: var(--text-secondary); padding: var(--space-1) 0;">(2023–2027) Ph.D., Leiden Observatory</li>
-
-<li style="font-size: 0.875rem; color: var(--text-secondary); padding: var(--space-1) 0;">(2021–2023) M.Sc. Astronomy, Leiden</li>
-
-<li style="font-size: 0.875rem; color: var(--text-secondary); padding: var(--space-1) 0;">(2016–2020) B.Sc. Physics, Barcelona</li>
-
-</ul>
-
-</div>
-
-<div class="section-card" style="margin-top: var(--space-6);">
-<h4 style="margin-top: 0;">News</h4>
-<div class="news-timeline">
-
-<div class="news-item">
-<div class="news-date">26 August, 2026</div>
-<div class="news-headline"><a href="https://arxiv.org/abs/2608.26097" target="_blank" rel="noopener noreferrer">The Isotopic and Elemental Abundances of Planet-Host Star TRAPPIST-1 accepted to The Astrophysical Journal (ApJ)</a></div>
-</div>
-
-<div class="news-item">
-<div class="news-date">10 June, 2026</div>
-<div class="news-headline"><a href="https://arxiv.org/abs/2606.12401" target="_blank" rel="noopener noreferrer">The carbon isotope ratio of β Pic b with high-resolution spectroscopy accepted to Astronomy & Astrophysics (A&A)</a></div>
-</div>
-
-<div class="news-item">
-<div class="news-date">26 August, 2025</div>
-<div class="news-headline"><a href="https://www.universiteitleiden.nl/en/news/2025/08/rare-isotopes-in-our-neighbouring-stars-provide-new-insights-in-the-origin-of-carbon-and-oxygen" target="_blank" rel="noopener noreferrer">Rare isotopes in neighbouring stars — Nature Astronomy press release</a></div>
-</div>
-
-</div>
-<p style="margin-top: var(--space-4);"><a href="https://dgonzalezpicos.github.io/allnews.html">See all news &rarr;</a></p>
-</div>
-
-  </div>
-</div>
-
-    </main>
-
-    <footer class="site-footer">
-  <div class="footer-grid">
-    <div>
-      <h5>About</h5>
-      <p>
-        Darío González Picos<br>
-        PhD candidate in exoplanet atmospheres<br>
-        Leiden Observatory
-      </p>
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Darío González Picos</span>
+      <span>Leiden Observatory · <a href="mailto:picos@strw.leidenuniv.nl">picos@strw.leidenuniv.nl</a></span>
     </div>
-    <div>
-      <h5>Contact</h5>
-      <p>
-        <a href="mailto:picos@strw.leidenuniv.nl"><i class="fa-solid fa-envelope"></i> picos@strw.leidenuniv.nl</a><br>
-        <a href="https://github.com/DGonzalezPicos"><i class="fa-brands fa-github"></i> GitHub</a><br>
-      </p>
-    </div>
-    <div>
-      <h5>Links</h5>
-      <p>
-        
-        
-        <a href="https://github.com/sbryngelson/academic-website-template"><i class="fa-brands fa-github"></i> Use this template!</a>
-      </p>
-    </div>
-  </div>
-  <div class="footer-grid">
-    <div class="footer-copyright" style="grid-column: 1 / -1;">
-      &copy; 2026 Darío González Picos
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="/assets/javascript/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="/assets/js/site.min.js"></script>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var themeBtn = document.getElementById('theme-toggle');
+      var toggle = document.querySelector('.nav-toggle');
+      var menu = document.getElementById('nav-menu');
 
+      function currentTheme() {
+        return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      }
 
-  </body>
+      function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+        if (themeBtn) {
+          themeBtn.setAttribute(
+            'aria-label',
+            theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+          );
+        }
+      }
 
+      if (!root.getAttribute('data-theme')) applyTheme('light');
+      else applyTheme(currentTheme());
+
+      if (themeBtn) {
+        themeBtn.addEventListener('click', function () {
+          applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+        });
+      }
+
+      if (toggle && menu) {
+        toggle.addEventListener('click', function () {
+          var open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(function (a) {
+          a.addEventListener('click', function () {
+            menu.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    })();
+  </script>
+</body>
 </html>
